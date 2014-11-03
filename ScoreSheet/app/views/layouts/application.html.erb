@@ -5,95 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falcons Score Sheet</title>
-
-
+  <!-- Stylesheet -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <!-- JavaScript -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 
   <%= csrf_meta_tags %>
-
-
 </head>
 <body role="document">
 
 <!-- Header Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Score Sheet</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Season32</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons32←31<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Season32</a></li>
-            <li><a href="#">Season31</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons30←21<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Season30</a></li>
-            <li><a href="#">Season29</a></li>
-            <li><a href="#">Season28</a></li>
-            <li><a href="#">Season27</a></li>
-            <li><a href="#">Season26</a></li>
-            <li><a href="#">Season25</a></li>
-            <li><a href="#">Season24</a></li>
-            <li><a href="#">Season23</a></li>
-            <li><a href="#">Season22</a></li>
-            <li><a href="#">Season21</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons20←11<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Season20</a></li>
-            <li><a href="#">Season19</a></li>
-            <li><a href="#">Season18</a></li>
-            <li><a href="#">Season17</a></li>
-            <li><a href="#">Season16</a></li>
-            <li><a href="#">Season15</a></li>
-            <li><a href="#">Season14</a></li>
-            <li><a href="#">Season13</a></li>
-            <li><a href="#">Season12</a></li>
-            <li><a href="#">Season11</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Season10←1<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Season10</a></li>
-            <li><a href="#">Season9</a></li>
-            <li><a href="#">Season8</a></li>
-            <li><a href="#">Season7</a></li>
-            <li><a href="#">Season6</a></li>
-            <li><a href="#">Season5</a></li>
-            <li><a href="#">Season4</a></li>
-            <li><a href="#">Season3</a></li>
-            <li><a href="#">Season2</a></li>
-            <li><a href="#">Season1</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
-<!--//Header Navigation -->
+<%= render partial:"application/header", selected_season:@selected_season, seasons_menu:@seasons_menu %>
+<!--// Header Navigation -->
 
+<!-- Contents -->
 <div class="container" role="main">
 
 <%= yield %>
 
-</div> <!-- /container -->
+</div>
+<!--// Contents -->
 
 </body>
 </html>

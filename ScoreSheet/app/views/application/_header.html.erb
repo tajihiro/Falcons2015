@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Score Sheet', root_path, class:'navbar-brand'%>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <%= link_to score_sheet_index_path(season_id:@selected_season.id) do %>
+            <%= @selected_season.season_name %>
+              (<%= @selected_season.season_start %> 〜 <%= @selected_season.season_end %>)
+          <% end %>
+        </li>
+        <!--Dropdown Menu-->
+        <% @seasons_menu.each do |seasons| %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%=seasons.max.season_name%>←<%=seasons.min.season_name%><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <% seasons.each do |season| %>
+            <li>
+              <%= link_to season.season_name, score_sheet_index_path(season_id:season.id) %>
+            </li>
+            <%end%>
+          </ul>
+        </li>
+        <% end %>
+        <!--// Dropdown Menu-->
+      </ul>
+    </div>
+  </div>
+</nav>
