@@ -6,7 +6,7 @@
       <% else %>
         <li role="presentation">
       <% end %>
-            <a href="#"><%= game.game_name %></a>
+            <%= link_to game.game_name, score_sheet_index_path(season_id:@selected_game.season_id, game_id:game.id)%>
         </li>
     <% end %>
         <li>

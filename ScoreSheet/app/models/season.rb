@@ -1,11 +1,11 @@
 class Season < ActiveRecord::Base
 
   def self.selected_season(id)
-    find(id)
-  end
-
-  def self.current_season
-    last
+    if id.nil?
+      last
+    else
+      find(id)
+    end
   end
 
   def self.seasons_menu
