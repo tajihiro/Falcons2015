@@ -13,6 +13,5 @@
  *= require jquery-ui
  *= require jquery-ui.theme
  *= require scoresheet
- *= require bootstrap
  *= require_self
  */

@@ -1,0 +1,16 @@
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <% @games_navi.each do |game| %>
+      <% if game.id == @selected_game.id %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation">
+      <% end %>
+            <a href="#"><%= game.game_name %></a>
+        </li>
+    <% end %>
+        <li>
+            <a href="#"><span class="glyphicon glyphicon-plus-sign">Add</span></a>
+        </li>
+  </ul>
+</div>

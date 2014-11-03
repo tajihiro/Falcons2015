@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :games
+
   root 'score_sheet#index'
   get 'score_sheet/index'
 

@@ -7,15 +7,18 @@
   <title>Falcons Score Sheet</title>
   <!-- Stylesheet -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
   <!-- JavaScript -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   <%= csrf_meta_tags %>
 </head>
 <body role="document">
 
 <!-- Header Navigation -->
-<%= render partial:"application/header", selected_season:@selected_season, seasons_menu:@seasons_menu %>
+<%= render partial: 'application/header', selected_season:@selected_season, seasons_menu:@seasons_menu %>
 <!--// Header Navigation -->
 
 <!-- Contents -->

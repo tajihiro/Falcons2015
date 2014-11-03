@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require scoresheet
-//= require bootstrap
