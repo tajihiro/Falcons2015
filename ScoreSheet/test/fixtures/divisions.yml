@@ -4,8 +4,57 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+Platinum:
+  id: 1
+  division_name: Platinum
+  division_en_name: P
+
+Gold:
+  id: 2
+  division_name: Gold
+  division_en_name: G
+
+Silver:
+  id: 3
+  division_name: Silver
+  division_en_name: S
+
+Bronze:
+  id: 4
+  division_name: Bronze
+  division_en_name: Bro
+
+Brass:
+  id: 5
+  division_name: Brass
+  division_en_name: Bra
+
+Copper:
+  id: 6
+  division_name: Copper
+  division_en_name: C
+
+Iron:
+  id: 7
+  division_name: Iron
+  division_en_name: I
+
+Kids:
+  id: 8
+  division_name: Kids
+  division_en_name: K
+
+WGold:
+  id: 9
+  division_name: WGold
+  division_en_name: WG
+
+WBronze:
+  id: 10
+  division_name: WBronze
+  division_en_name: WB
+
+Over35:
+  id: 11
+  division_name: Over35
+  division_en_name: 35

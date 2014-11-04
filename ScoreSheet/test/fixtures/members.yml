@@ -1,0 +1,332 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+ksk:
+  id: 1
+  last_name: 轟
+  first_name: 啓介
+  last_en_name: Todoroki
+  first_en_name: Keisuke
+  nick_name: ksk
+  jersey_number: 22
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 神奈川
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/ksk.jpg"
+
+taji:
+  id: 2
+  last_name: 田島
+  first_name: 啓之
+  last_en_name: Tajima
+  first_en_name: Hiroyuki
+  nick_name: たぢ
+  jersey_number: 2
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 群馬
+  birthday: "1971/12/15"
+  image_url: "http://millennium-falcons.com/face/taji.jpg"
+
+shuhei:
+  id: 3
+  last_name: 小川
+  first_name: 修平
+  last_en_name: Ogawa
+  first_en_name: Shuhei
+  nick_name: しゅーへい
+  jersey_number: 13
+  position_id: 2
+  gender: 1
+  address: 東京
+  birth_place: 青森
+  birthday: "1975/11/13"
+  image_url: "http://millennium-falcons.com/face/shuhei.jpg"
+
+tarora:
+  id: 4
+  last_name: 太郎良
+  first_name: 顕
+  last_en_name: Tarora
+  first_en_name: Ken
+  nick_name: たろうら
+  jersey_number: 44
+  position_id: 3
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1987/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+masaya:
+  id: 5
+  last_name: 落合
+  first_name: 雅也
+  last_en_name: Ochiai
+  first_en_name: Masaya
+  nick_name: まさや
+  jersey_number: 28
+  position_id: 1
+  gender: 1
+  address: 千葉
+  birth_place: 千葉
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+takama:
+  id: 6
+  last_name: 高天
+  first_name: 直樹
+  last_en_name: Takama
+  first_en_name: Naoki
+  nick_name: たかま
+  jersey_number: 11
+  position_id: 2
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+keiji:
+  id: 7
+  last_name: 来留島
+  first_name: 圭司
+  last_en_name: Kurushima
+  first_en_name: Keiji
+  nick_name: けいじ
+  jersey_number: 10
+  position_id: 2
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+katsu:
+  id: 8
+  last_name: 伊原
+  first_name: 克将
+  last_en_name: Ihara
+  first_en_name: Katsumasa
+  nick_name: かつ
+  jersey_number: 49
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1983/06/07"
+  image_url: "http://millennium-falcons.com/face/katsu.jpg"
+
+shingo:
+  id: 9
+  last_name: 片平
+  first_name: 晋吾
+  last_en_name: Katahira
+  first_en_name: Shingo
+  nick_name: しんご
+  jersey_number: 39
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+tsutomu:
+  id: 10
+  last_name: 若林
+  first_name: 努
+  last_en_name: Wakabayashi
+  first_en_name: Ysutomu
+  nick_name: つとむ
+  jersey_number: 45
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+koichi:
+  id: 11
+  last_name: 若林
+  first_name: 孝一
+  last_en_name: Wakabayashi
+  first_en_name: Koichi
+  nick_name: こういち
+  jersey_number: 51
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+yoriko:
+  id: 12
+  last_name: 一ノ宮
+  first_name: 頼子
+  last_en_name: Ichinomiya
+  first_en_name: Yoriko
+  nick_name: Yoriko
+  jersey_number: 3
+  position_id: 1
+  gender: 2
+  address: 東京
+  birth_place: 神奈川
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+  
+kazutora:
+  id: 13
+  last_name: 鈴木
+  first_name: 一虎
+  last_en_name: Suzuki
+  first_en_name: Kazutora
+  nick_name: かずとら
+  jersey_number: 7
+  position_id: 1
+  gender: 1
+  address: 神奈川
+  birth_place: 神奈川
+  birthday: "1975/03/22"
+  image_url: "http://millennium-falcons.com/face/kazutora.jpg"
+  
+matsui:
+  id: 14
+  last_name: 松井
+  first_name: 崇
+  last_en_name: Matsui
+  first_en_name: Takashi
+  nick_name: まついさん
+  jersey_number: 11
+  position_id: 2
+  gender: 1
+  address: 東京
+  birth_place: 東京
+  birthday: "1972/03/22"
+  image_url: "http://millennium-falcons.com/face/matsui.jpg"
+
+billy:
+  id: 15
+  last_name: 児玉
+  first_name: 隆
+  last_en_name: Kodama
+  first_en_name: Billy
+  nick_name: Billy
+  jersey_number: 18
+  position_id: 1
+  gender: 1
+  address: アルゼンチン
+  birth_place: 北海道
+  birthday: "1976/01/21"
+  image_url: "http://millennium-falcons.com/face/billy.jpg"
+  
+kikuchi:
+  id: 16
+  last_name: 菊地
+  first_name: 竜次
+  last_en_name: Kikuchi
+  first_en_name: Ryuji
+  nick_name: きくち
+  jersey_number: 24
+  position_id: 1
+  gender: 1
+  address: 神奈川
+  birth_place: 神奈川
+  birthday: "1975/11/08"
+  image_url: "http://millennium-falcons.com/face/kikuchi.jpg"
+  
+wakamatsu:
+  id: 17
+  last_name: 若松
+  first_name: 大輔
+  last_en_name: Wakamutsu
+  first_en_name: Daisuke
+  nick_name: わかまつ
+  jersey_number: 35
+  position_id: 1
+  gender: 1
+  address: イングランド
+  birth_place: 東京
+  birthday: "1975/11/08"
+  image_url: "http://millennium-falcons.com/face/wakamatsu.jpg"
+  
+hasebe:
+  id: 18
+  last_name: 長谷部
+  first_name: 道生
+  last_en_name: Hasebe
+  first_en_name: Michio
+  nick_name: ハサーべ
+  jersey_number: 68
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 宮城
+  birthday: "1973/06/08"
+  image_url: "http://millennium-falcons.com/face/hasebe.jpg"
+
+junko:
+  id: 19
+  last_name: 平野
+  first_name: 順子
+  last_en_name: Hirano
+  first_en_name: Junko
+  nick_name: じゅんこ
+  jersey_number: 47
+  position_id: 1
+  gender: 2
+  address: 東京
+  birth_place: 東京
+  birthday: "1974/12/28"
+  image_url: "http://millennium-falcons.com/face/junko.jpg"
+
+junko:
+  id: 20
+  last_name: 平山
+  first_name: 恵
+  last_en_name: Hirayama
+  first_en_name: Megumi
+  nick_name: めぐみ
+  jersey_number: 66
+  position_id: 1
+  gender: 2
+  address: 東京
+  birth_place: 東京
+  birthday: "1974/12/28"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+
+keita:
+  id: 21
+  last_name: 田辺
+  first_name: 啓太
+  last_en_name: Tanabe
+  first_en_name: keita
+  nick_name: けいた
+  jersey_number: 23
+  position_id: 1
+  gender: 1
+  address: 東京
+  birth_place: 長野
+  birthday: "1974/03/27"
+  image_url: "http://millennium-falcons.com/face/keita.jpg"
+
+nobu:
+  id: 22
+  last_name: 飯塚
+  first_name: のぶ
+  last_en_name: Iizuka
+  first_en_name: Nobu
+  nick_name: のぶ
+  jersey_number: 94
+  position_id: 3
+  gender: 1
+  address: 茨城
+  birth_place: 茨城
+  birthday: "1977/07/07"
+  image_url: "http://millennium-falcons.com/face/nobody.gif"
+    

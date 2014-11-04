@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
-
-  resources :games
-
   root 'score_sheet#index'
   get 'score_sheet/index'
 
-
   resources :seasons
+  resources :games
+
+  # resources :seasons do
+  #   resources :games
+  # end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

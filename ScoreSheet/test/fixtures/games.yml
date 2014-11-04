@@ -1,11 +1,145 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+game1:
+  id: 1
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 1st
+  home_team_id: 1
+  home_team_score: 2
+  away_team_id: 3
+  away_team_score: 7
+  game_date: 2013-02-24
+  game_time: '11:00'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+  
+game2:
+  id: 2
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 2nd
+  home_team_id: 7
+  home_team_score: 5
+  away_team_id: 1
+  away_team_score: 2
+  game_date: 2013-03-03
+  game_time: '20:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game3:
+  id: 3
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 3rd
+  home_team_id: 1 
+  home_team_score: 2
+  away_team_id: 4
+  away_team_score: 6
+  game_date: 2013-03-17
+  game_time: '15:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game4:
+  id: 4
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 4th
+  home_team_id: 1 
+  home_team_score: 10
+  away_team_id: 15
+  away_team_score: 5
+  game_date: 2013-03-31
+  game_time: '10:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game5:
+  id: 5
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 5th
+  home_team_id: 14 
+  home_team_score: 0
+  away_team_id: 1
+  away_team_score: 10
+  game_date: 2013-04-14
+  game_time: '15:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game6:
+  id: 6
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 6th
+  home_team_id: 8 
+  home_team_score: 5
+  away_team_id: 1
+  away_team_score: 11
+  game_date: 2013-04-29
+  game_time: '11:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game7:
+  id: 7
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 7th
+  home_team_id: 1 
+  home_team_score: 9
+  away_team_id: 9
+  away_team_score: 6
+  game_date: 2013-05-19
+  game_time: '14:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game8:
+  id: 8
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 8th
+  home_team_id: 6 
+  home_team_score: 10
+  away_team_id: 1
+  away_team_score: 9
+  game_date: 2013-06-02
+  game_time: '09:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント
+
+game9:
+  id: 9
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 9th
+  home_team_id: 1 
+  home_team_score: 7
+  away_team_id: 11
+  away_team_score: 4
+  game_date: 2013-06-09
+  game_time: '15:30'
+  game_place: Misc
+  movie_url: http://xxx/
+  comments: コメント

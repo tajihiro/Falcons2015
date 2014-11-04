@@ -1,0 +1,12 @@
+position_fw:
+  id: 1
+  position_name: FW
+  
+position_DF:
+  id: 2
+  position_name: DF
+  
+position_GK:
+  id: 3
+  position_name: GK
+  

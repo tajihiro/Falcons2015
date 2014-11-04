@@ -1,11 +1,138 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+team_1:
+  id: 1
+  team_name: Falcons
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://millennium-falcons.com/"
+
+team_2:
+  id: 2
+  team_name: 船堀亭
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_3:
+  id: 3
+  team_name: MASSIVE ATTACK
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_4:
+  id: 4
+  team_name: 名無しBoyzⅡ
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_5:
+  id: 5
+  team_name: GOKURAKU RASTAS
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_6:
+  id: 6
+  team_name: GRIFFΦN
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_7:
+  id: 7
+  team_name: ランバージャックス
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_8:
+  id: 8
+  team_name: もずくす
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_9:
+  id: 9
+  team_name: Prairiedogs
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_10:
+  id: 10
+  team_name: サイコペッカーズ
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_11:
+  id: 11
+  team_name: nobounddarys
+  prefecture_id: 14
+  home_place: 神奈川
+  since: 1997
+  image_url: "http://"
+
+team_12:
+  id: 12
+  team_name: 駒沢魂
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_13:
+  id: 13
+  team_name: KOEDO AVALANCHE
+  prefecture_id: 11
+  home_place: 埼玉
+  since: 1997
+  image_url: "http://"
+
+team_14:
+  id: 14
+  team_name: フライングペンギンズM
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_15:
+  id: 15
+  team_name: Red Marmots
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_16:
+  id: 16
+  team_name: BM BEYOND
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+
+team_17:
+  id: 17
+  team_name: 日体大DREAMS Bronze
+  prefecture_id: 13
+  home_place: 東京
+  since: 1997
+  image_url: "http://"
+  

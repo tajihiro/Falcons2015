@@ -1,11 +1,193 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+season_1:
+  id: 1
+  season_name: 第1期
+  season_start: 1999/08
+  season_end: 1999/01
+
+season_2:
+  id: 2
+  season_name: 第2期
+  season_start: 1999/02
+  season_end: 1999/07
+
+season_3:
+  id: 3
+  season_name: 第3期
+  season_start: 1999/08
+  season_end: 2000/01
+
+season_4:
+  id: 4
+  season_name: 第4期
+  season_start: 2000/02
+  season_end: 2000/07
+
+season_5:
+  id: 5
+  season_name: 第5期
+  season_start: 2000/08
+  season_end: 2001/01
+
+season_6:
+  id: 6
+  season_name: 第6期
+  season_start: 2001/02
+  season_end: 2001/07
+
+season_7:
+  id: 7
+  season_name: 第7期
+  season_start: 2001/08
+  season_end: 2002/01
+
+season_8:
+  id: 8
+  season_name: 第8期
+  season_start: 2002/02
+  season_end: 2002/07
+
+season_9:
+  id: 9
+  season_name: 第9期
+  season_start: 2002/08
+  season_end: 2003/02
+
+season_10:
+  id: 10
+  season_name: 第10期
+  season_start: 2003/08
+  season_end: 2004/01
+
+season_11:
+  id: 11
+  season_name: 第11期
+  season_start: 2004/02
+  season_end: 2004/07
+
+season_12:
+  id: 12
+  season_name: 第12期
+  season_start: 2004/08
+  season_end: 2005/01
+
+season_13:
+  id: 13
+  season_name: 第13期
+  season_start: 2005/02
+  season_end: 2005/07
+
+season_14:
+  id: 14
+  season_name: 第14期
+  season_start: 2005/08
+  season_end: 2006/01
+
+season_15:
+  id: 15
+  season_name: 第15期
+  season_start: 2006/02
+  season_end: 2006/07
+
+season_16:
+  id: 16
+  season_name: 第16期
+  season_start: 2006/08
+  season_end: 2007/01
+
+season_17:
+  id: 17
+  season_name: 第17期
+  season_start: 2007/02
+  season_end: 2007/07
+
+season_18:
+  id: 18
+  season_name: 第18期
+  season_start: 2007/08
+  season_end: 2008/01
+
+season_19:
+  id: 19
+  season_name: 第19期
+  season_start: 2008/02
+  season_end: 2008/07
+
+season_20:
+  id: 20
+  season_name: 第20期
+  season_start: 2008/08
+  season_end: 2009/01
+
+season_21:
+  id: 21
+  season_name: 第21期
+  season_start: 2009/02
+  season_end: 2009/07
+
+season_22:
+  id: 22
+  season_name: 第22期
+  season_start: 2009/08
+  season_end: 2010/01
+
+season_23:
+  id: 23
+  season_name: 第23期
+  season_start: 2010/02
+  season_end: 2010/07
+
+season_24:
+  id: 24
+  season_name: 第24期
+  season_start: 2010/08
+  season_end: 2011/01
+
+season_25:
+  id: 25
+  season_name: 第25期
+  season_start: 2011/08
+  season_end: 2012/01
+
+season_26:
+  id: 26
+  season_name: 第26期
+  season_start: 2012/02
+  season_end: 2012/07
+
+season_27:
+  id: 27
+  season_name: 第27期
+  season_start: 2012/08
+  season_end: 2013/01
+
+season_28:
+  id: 28
+  season_name: 第28期
+  season_start: 2013/02
+  season_end: 2013/07
+
+season_29:
+  id: 29
+  season_name: 第29期
+  season_start: 2013/08
+  season_end: 2013/01
+
+season_30:
+  id: 30
+  season_name: 第30期
+  season_start: 2014/02
+  season_end: 2014/07
+
+season_31:
+  id: 31
+  season_name: 第31期
+  season_start: 2014/08
+  season_end: 2015/01
+
+season_32:
+  id: 32
+  season_name: 第32期
+  season_start: 2015/02
+  season_end: 2015/07
