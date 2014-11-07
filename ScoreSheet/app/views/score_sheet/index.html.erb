@@ -13,8 +13,8 @@
 
             <thead>
             <tr>
-              <th colspan="2">Date : <input type="text" id="datepicker"></th>
-              <th colspan="2">Time : <span></span></th>
+              <th colspan="2">Date : <%= date_field_tag :game_date, @selected_game.game_date %></th>
+              <th colspan="2">Time : <span><%= @selected_game.game_time %></span></th>
               <th colspan="8">Div :
                 P <input type="radio" name="division"> /
                 G <input type="radio" name="division"> /
@@ -47,7 +47,7 @@
             <tr>
               <th>Visitor</th>
               <td colspan="2">
-                <input type="text" size="40">
+                <%= text_field_tag :away_team_id, @selected_game.away_team_id, size:40 %>
               </td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
@@ -62,7 +62,7 @@
             <tr>
               <th>Home</th>
               <td colspan="2">
-                <input type="text" size="40">
+                <%= text_field_tag :home_team_id, @selected_game.home_team_id, size:40 %>
               </td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>

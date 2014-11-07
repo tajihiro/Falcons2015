@@ -13,6 +13,7 @@ game1:
   game_date: 2013-02-24
   game_time: '11:00'
   game_place: Misc
+  disp_order: 1
   movie_url: http://xxx/
   comments: コメント
   
@@ -29,6 +30,7 @@ game2:
   game_date: 2013-03-03
   game_time: '20:30'
   game_place: Misc
+  disp_order: 2
   movie_url: http://xxx/
   comments: コメント
 
@@ -45,6 +47,7 @@ game3:
   game_date: 2013-03-17
   game_time: '15:30'
   game_place: Misc
+  disp_order: 3
   movie_url: http://xxx/
   comments: コメント
 
@@ -61,6 +64,7 @@ game4:
   game_date: 2013-03-31
   game_time: '10:30'
   game_place: Misc
+  disp_order: 4
   movie_url: http://xxx/
   comments: コメント
 
@@ -77,6 +81,7 @@ game5:
   game_date: 2013-04-14
   game_time: '15:30'
   game_place: Misc
+  disp_order: 5
   movie_url: http://xxx/
   comments: コメント
 
@@ -93,6 +98,7 @@ game6:
   game_date: 2013-04-29
   game_time: '11:30'
   game_place: Misc
+  disp_order: 6
   movie_url: http://xxx/
   comments: コメント
 
@@ -109,6 +115,7 @@ game7:
   game_date: 2013-05-19
   game_time: '14:30'
   game_place: Misc
+  disp_order: 7
   movie_url: http://xxx/
   comments: コメント
 
@@ -125,6 +132,7 @@ game8:
   game_date: 2013-06-02
   game_time: '09:30'
   game_place: Misc
+  disp_order: 8
   movie_url: http://xxx/
   comments: コメント
 
@@ -141,5 +149,40 @@ game9:
   game_date: 2013-06-09
   game_time: '15:30'
   game_place: Misc
+  disp_order: 9
+  movie_url: http://xxx/
+  comments: コメント
+
+game_final:
+  id: 10
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: final
+  home_team_id: 1
+  home_team_score: 7
+  away_team_id: 11
+  away_team_score: 4
+  game_date: 2013-06-09
+  game_time: '15:30'
+  game_place: Misc
+  disp_order: 11
+  movie_url: http://xxx/
+  comments: コメント
+
+game10:
+  id: 11
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_name: 10th
+  home_team_id: 1
+  home_team_score: 7
+  away_team_id: 11
+  away_team_score: 4
+  game_date: 2013-06-09
+  game_time: '15:30'
+  game_place: Misc
+  disp_order: 10
   movie_url: http://xxx/
   comments: コメント

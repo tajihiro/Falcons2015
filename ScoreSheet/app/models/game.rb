@@ -1,8 +1,8 @@
 class Game < ActiveRecord::Base
 
   def self.selected_game(season_id, id)
-    if id.nil?
-      where(season_id: season_id).last
+    if season_id.nil? || id.nil?
+      all.order('disp_order').last
     else
       find(id)
     end
