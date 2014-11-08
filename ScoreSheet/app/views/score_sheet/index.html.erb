@@ -47,7 +47,8 @@
             <tr>
               <th>Visitor</th>
               <td colspan="2">
-                <%= text_field_tag :away_team_id, @selected_game.away_team_id, size:40 %>
+                <%= text_field_tag :away_team_name, @selected_game.away_team.team_name, size:40 %>
+                <%= hidden_field_tag :away_team_id, @selected_game.away_team_id %>
               </td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
@@ -62,7 +63,8 @@
             <tr>
               <th>Home</th>
               <td colspan="2">
-                <%= text_field_tag :home_team_id, @selected_game.home_team_id, size:40 %>
+                <%= text_field_tag :home_team_name, @selected_game.home_team.team_name, size:40 %>
+                <%= hidden_field_tag :home_team_id, @selected_game.home_team_id %>
               </td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>

@@ -37,5 +37,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# gem 'ruby-debug-ide', group: [:development, :test]
+# gem 'debase', group: [:development, :test]
 
 gem 'rspec-rails'
