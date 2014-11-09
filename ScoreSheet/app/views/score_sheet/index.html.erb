@@ -1,11 +1,12 @@
 <!-- Game Navi -->
-<%= render partial: 'application/games_navi', selected_game:@selected_game, games_navi:@games_navi %>
+<%= render partial: 'application/games_navi', selected_game:@game, games_navi:@games_navi %>
 <!--// Game Navi -->
 
 <p></p>
 
 <!-- Game Table-->
 <h4>Game</h4>
+<%=form_for @game do |f| %>
 <div>
     <div class="row">
         <div class="col-md-12">
@@ -13,9 +14,12 @@
 
             <thead>
             <tr>
-              <th colspan="2">Date : <%= date_field_tag :game_date, @selected_game.game_date %></th>
-              <th colspan="2">Time : <span><%= @selected_game.game_time %></span></th>
-              <th colspan="8">Div :
+              <th colspan="2">Date : <%= f.date_select :game_date, {:use_month_numbers => true} %></th>
+              <th colspan="6">Time : <span><%= f.time_select :game_time, {:minute_step => 30, :time_separator => ""} %></span></th>
+              <th colspan="4">Place : <%= f.text_field :game_place %></th>
+            </tr>
+            <tr>
+              <th colspan="12">Div :
                 P <input type="radio" name="division"> /
                 G <input type="radio" name="division"> /
                 S <input type="radio" name="division"> /
@@ -35,45 +39,67 @@
               <th>1</th>
               <th>2</th>
               <th>OT</th>
-              <th>Total</th>
+              <th>Total(P)</th>
               <th>SOG</th>
               <th>1</th>
               <th>2</th>
               <th>OT</th>
-              <th>Total</th>
+              <th>Total(S)</th>
             </tr>
             </thead>
             <tbody>
             <tr>
               <th>Visitor</th>
+              <!--Away Team-->
               <td colspan="2">
-                <%= text_field_tag :away_team_name, @selected_game.away_team.team_name, size:40 %>
-                <%= hidden_field_tag :away_team_id, @selected_game.away_team_id %>
+                <%= f.collection_select(:away_team_id, @season_teams, :team_id, :team_name) %>
               </td>
+              <!--1-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--2-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--OT-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--Total(P)-->
+              <td>
+                <%= text_field_tag :away_team_score, @game.away_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--SOG-->
               <td>-</td>
+              <!--1-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--2-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--OT-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--Total(S)-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
             </tr>
             <tr>
               <th>Home</th>
+              <!--Home Team-->
               <td colspan="2">
-                <%= text_field_tag :home_team_name, @selected_game.home_team.team_name, size:40 %>
-                <%= hidden_field_tag :home_team_id, @selected_game.home_team_id %>
+                <%= f.collection_select(:home_team_id, @season_teams, :team_id, :team_name) %>
               </td>
+              <!--1-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--2-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--OT-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--Total(P)-->
+              <td>
+                <%= text_field_tag :away_team_score, @game.home_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--SOG-->
               <td>-</td>
+              <!--1-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--2-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--OT-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <!--Total-->
               <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
             </tr>
             </tbody>
@@ -81,6 +107,7 @@
         </div>
     </div>
 </div>
+<% end %>
 <!--// Game Table-->
 
 

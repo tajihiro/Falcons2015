@@ -3,12 +3,22 @@ class ScoreSheetController < ApplicationController
     season_id = params[:season_id]
     game_id = params[:game_id]
 
-    @selected_game = Game.selected_game(season_id,game_id)
-    @selected_season = Season.selected_season(@selected_game.season_id)
+    @game = Game.selected_game(season_id,game_id)
+    @season = Season.selected_season(@game.season_id)
 
+    #SeasonMembers取得
+    @season_members = SeasonMember.where(season_id:@game.season_id)
+    #GameMembers取得
+    @game_members = GameMember.where(game_id:@game.id)
+
+    #表示項目取得
+    #SeasonTeams取得
+    @season_teams = SeasonTeam.season_teams(@game.season_id)
     #Seasonメニュー取得
     @seasons_menu = Season.seasons_menu
     #Gameナビ取得
-    @games_navi = Game.games_navi(@selected_season.id)
+    @games_navi = Game.games_navi(@season.id)
+
+
   end
 end

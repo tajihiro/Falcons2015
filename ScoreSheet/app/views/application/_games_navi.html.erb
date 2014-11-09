@@ -1,12 +1,12 @@
 <div>
   <ul class="nav nav-tabs" role="tablist">
     <% @games_navi.each do |game| %>
-      <% if game.id == @selected_game.id %>
+      <% if game.id == @game.id %>
         <li role="presentation" class="active">
       <% else %>
         <li role="presentation">
       <% end %>
-            <%= link_to game.game_name, score_sheet_index_path(season_id:@selected_game.season_id, game_id:game.id)%>
+            <%= link_to game.game_name, score_sheet_index_path(season_id:@game.season_id, game_id:game.id)%>
         </li>
     <% end %>
         <li>

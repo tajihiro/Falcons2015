@@ -11,11 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103063133) do
+ActiveRecord::Schema.define(version: 20141109120623) do
 
   create_table "divisions", force: true do |t|
     t.string   "division_name",    limit: 30, null: false
     t.string   "division_en_name", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_members", id: false, force: true do |t|
+    t.integer  "game_id",                                null: false
+    t.integer  "member_id",                              null: false
+    t.integer  "goal",                     default: 0,   null: false
+    t.integer  "assist",                   default: 0,   null: false
+    t.integer  "goal_against",             default: 0,   null: false
+    t.integer  "shots_against",            default: 0,   null: false
+    t.float    "penalties",     limit: 24, default: 0.0, null: false
+    t.integer  "goalie_flg",               default: 0,   null: false
+    t.integer  "mvp_flg",                  default: 0,   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,6 +83,27 @@ ActiveRecord::Schema.define(version: 20141103063133) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "season_members", id: false, force: true do |t|
+    t.integer  "season_id",   null: false
+    t.integer  "division_id", null: false
+    t.integer  "team_id",     null: false
+    t.integer  "member_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "season_teams", id: false, force: true do |t|
+    t.integer  "season_id",   null: false
+    t.integer  "division_id", null: false
+    t.integer  "team_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "season_teams", ["division_id"], name: "index_season_teams_on_division_id", using: :btree
+  add_index "season_teams", ["season_id"], name: "index_season_teams_on_season_id", using: :btree
+  add_index "season_teams", ["team_id"], name: "index_season_teams_on_team_id", using: :btree
 
   create_table "seasons", force: true do |t|
     t.string   "season_name",  limit: 30, null: false
