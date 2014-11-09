@@ -20,17 +20,10 @@
             </tr>
             <tr>
               <th colspan="12">Div :
-                P <input type="radio" name="division"> /
-                G <input type="radio" name="division"> /
-                S <input type="radio" name="division"> /
-                Bro <input type="radio" name="division" checked> /
-                Bra <input type="radio" name="division"> /
-                C <input type="radio" name="division"> /
-                I <input type="radio" name="division"> /
-                K <input type="radio" name="division"> /
-                WG <input type="radio" name="division"> /
-                WB <input type="radio" name="division"> /
-                35 <input type="radio" name="division">
+                <% @divisions.each do |division|%>
+                    <%= division.division_en_name %>
+                    <%= f.radio_button :division_id, division.id %> /
+                <% end %>
               </th>
             </tr>
             <tr>

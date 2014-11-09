@@ -12,8 +12,9 @@ class ScoreSheetController < ApplicationController
     @game_members = GameMember.where(game_id:@game.id)
 
     #表示項目取得
-    #SeasonTeams取得
+    @divisions = Division.all
     @season_teams = SeasonTeam.season_teams(@game.season_id)
+
     #Seasonメニュー取得
     @seasons_menu = Season.seasons_menu
     #Gameナビ取得
