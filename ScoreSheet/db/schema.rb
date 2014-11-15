@@ -35,20 +35,35 @@ ActiveRecord::Schema.define(version: 20141109120623) do
   end
 
   create_table "games", force: true do |t|
-    t.integer  "season_id",                               null: false
-    t.integer  "division_id",                             null: false
-    t.integer  "team_id",                                 null: false
-    t.string   "game_name",       limit: 60,              null: false
-    t.integer  "home_team_id",                            null: false
-    t.integer  "home_team_score",             default: 0, null: false
-    t.integer  "away_team_id",                            null: false
-    t.integer  "away_team_score",             default: 0, null: false
-    t.date     "game_date",                               null: false
+    t.integer  "season_id",                                  null: false
+    t.integer  "division_id",                                null: false
+    t.integer  "team_id",                                    null: false
+    t.string   "game_name",          limit: 60,              null: false
+    t.integer  "home_team_id",                               null: false
+    t.integer  "home_team_p1_score",             default: 0, null: false
+    t.integer  "home_team_p2_score",             default: 0, null: false
+    t.integer  "home_team_ot_score",             default: 0, null: false
+    t.integer  "home_team_score",                default: 0, null: false
+    t.integer  "home_team_p1_shots",             default: 0, null: false
+    t.integer  "home_team_p2_shots",             default: 0, null: false
+    t.integer  "home_team_ot_shots",             default: 0, null: false
+    t.integer  "home_team_shots",                default: 0, null: false
+    t.integer  "away_team_id",                               null: false
+    t.integer  "away_team_p1_score",             default: 0, null: false
+    t.integer  "away_team_p2_score",             default: 0, null: false
+    t.integer  "away_team_ot_score",             default: 0, null: false
+    t.integer  "away_team_score",                default: 0, null: false
+    t.integer  "away_team_p1_shots",             default: 0, null: false
+    t.integer  "away_team_p2_shots",             default: 0, null: false
+    t.integer  "away_team_ot_shots",             default: 0, null: false
+    t.integer  "away_team_shots",                default: 0, null: false
+    t.date     "game_date",                                  null: false
     t.time     "game_time"
-    t.string   "game_place",      limit: 120
+    t.string   "game_place",         limit: 120
     t.text     "movie_url"
     t.text     "comments"
-    t.integer  "disp_order",                  default: 0
+    t.integer  "disp_order",                     default: 0
+    t.integer  "playoff_flg",                    default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,11 +129,12 @@ ActiveRecord::Schema.define(version: 20141109120623) do
   end
 
   create_table "teams", force: true do |t|
-    t.string   "team_name",     limit: 60, null: false
+    t.string   "team_name",     limit: 60,             null: false
     t.integer  "prefecture_id"
     t.string   "home_place",    limit: 30
     t.string   "since",         limit: 8
     t.text     "image_url"
+    t.integer  "my_team_flg",              default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
