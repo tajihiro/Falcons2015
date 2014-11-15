@@ -5,6 +5,7 @@ class GameMember < ActiveRecord::Base
 
   def self.game_goalies(game_id)
     sql = "select concat(M.last_name, ' ',M.first_name) goalie_name,
+                  M.jersey_number jersey_number,
                   P.position_name position_name,
                   S.member_id member_id,
                   S.goal_against goal_against,
@@ -26,6 +27,7 @@ class GameMember < ActiveRecord::Base
 
   def self.game_players(game_id)
     sql = "select concat(M.last_name, ' ',M.first_name) player_name,
+                  M.jersey_number jersey_number,
                   P.position_name position_name,
                   S.member_id member_id,
                   S.goal goal,
