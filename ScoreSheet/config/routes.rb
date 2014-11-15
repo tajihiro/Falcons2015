@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   root 'score_sheet#index'
+  get 'score_sheet' => 'score_sheet#index'
   get 'score_sheet/index'
+  get 'score_sheet/new'
+  get 'score_sheet/edit'
 
   resources :seasons
   resources :games
