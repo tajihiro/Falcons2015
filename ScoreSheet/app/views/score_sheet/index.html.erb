@@ -15,7 +15,14 @@
             <thead>
             <tr>
               <th colspan="2">Date : <%= f.date_select :game_date, {:use_month_numbers => true} %></th>
-              <th colspan="6">Time : <span><%= f.time_select :game_time, {:minute_step => 30, :time_separator => ""} %></span></th>
+              <th colspan="3">Time : <span><%= f.time_select :game_time, {:minute_step => 30, :time_separator => ""} %></span></th>
+              <th colspan="3">
+                <% if @game.playoff_flg == 1 %>
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                    Play Off Game
+                <% end%>
+                <%= f.hidden_field :playoff_flg %>
+              </th>
               <th colspan="4">Place : <%= f.text_field :game_place %></th>
             </tr>
             <tr>
@@ -48,25 +55,39 @@
                 <%= f.collection_select(:away_team_id, @season_teams, :team_id, :team_name) %>
               </td>
               <!--1-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_p1_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--2-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_p2_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--OT-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_ot_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--Total(P)-->
               <td>
-                <%= text_field_tag :away_team_score, @game.away_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+                <%= f.text_field :away_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
               </td>
               <!--SOG-->
               <td>-</td>
               <!--1-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_p1_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--2-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_p2_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--OT-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_ot_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--Total(S)-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :away_team_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
             </tr>
             <tr>
               <th>Home</th>
@@ -75,25 +96,39 @@
                 <%= f.collection_select(:home_team_id, @season_teams, :team_id, :team_name) %>
               </td>
               <!--1-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_p1_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--2-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_p2_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--OT-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_ot_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--Total(P)-->
               <td>
-                <%= text_field_tag :away_team_score, @game.home_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
+                <%= f.text_field :home_team_score, {size:2, maxlength:3, style:'text-align:right;'} %>
               </td>
               <!--SOG-->
               <td>-</td>
               <!--1-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_p1_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--2-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_p2_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--OT-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_ot_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
               <!--Total-->
-              <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+              <td>
+                <%= f.text_field :home_team_shots, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -121,7 +156,7 @@
             <th>MVP</th>
           </tr>
           </thead>
-          <!--Goalee-->
+          <!--Goalie-->
           <tbody>
           <% @game_goalies.each do |goalie| %>
               <tr>
@@ -132,7 +167,10 @@
                 <!-- Name -->
                 <td><span><%= goalie.goalie_name %></span></td>
                 <!-- 前半 -->
-                <td><input type="text" size="2" maxlength="3" style="text-align:right;">/<input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                <td>
+                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+                </td>
                 <!-- 後半 -->
                 <td><input type="text" size="2" maxlength="3" style="text-align:right;">/<input type="text" size="2" maxlength="3" style="text-align:right;"></td>
                 <!-- OT -->
@@ -153,7 +191,7 @@
               </tr>
           <% end %>
           </tbody>
-          <!--//Goalee-->
+          <!--//Goalie-->
 
           <!--Player-->
           <thead>
@@ -181,7 +219,7 @@
             <!-- A -->
             <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.assist %>"></td>
             <!-- P -->
-            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.point %>"></td>
+            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.penalties %>"></td>
             <!-- MVP -->
             <td>
                 <input type="hidden" value="<%= player.mvp_flg %>">

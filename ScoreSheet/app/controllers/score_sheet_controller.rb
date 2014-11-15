@@ -15,6 +15,7 @@ class ScoreSheetController < ApplicationController
 
     #表示項目取得
     @divisions = Division.all
+    @game_types =
     @season_teams = SeasonTeam.season_teams(@game.season_id)
 
     #Seasonメニュー取得
