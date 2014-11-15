@@ -161,7 +161,9 @@
           <% @game_goalies.each do |goalie| %>
               <tr>
                 <!-- # -->
-                <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= goalie.member_id %>"></td>
+                <td>
+                  <%= text_field_tag :member_id, goalie.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+                </td>
                 <!-- G -->
                 <td><%= goalie.position_name %></td>
                 <!-- Name -->
@@ -172,12 +174,18 @@
                   <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
                 </td>
                 <!-- 後半 -->
-                <td><input type="text" size="2" maxlength="3" style="text-align:right;">/<input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                <td>
+                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+                </td>
                 <!-- OT -->
-                <td><input type="text" size="2" maxlength="3" style="text-align:right;">/<input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                <td>
+                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+                </td>
                 <!-- MVP -->
                 <td>
-                  <input type="hidden" value="<%= goalie.mvp_flg %>">
+                  <%= hidden_field_tag :mvp_flg, goalie.mvp_flg %>
                   <% if goalie.mvp_flg == 0 %>
                   <span class="label label-default">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -209,20 +217,28 @@
           <% @game_players.each do |player| %>
           <tr>
             <!-- # -->
-            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.member_id %>"></td>
+            <td>
+              <%= text_field_tag :member_id, player.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+            </td>
             <!-- Pos. -->
             <td><span><%= player.position_name %></span></td>
             <!-- Name -->
             <td><span><%= player.player_name %></span></td>
             <!-- G -->
-            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.goal %>"></td>
+            <td>
+              <%= text_field_tag :goal, player.goal, {size:2, maxlength:3, style:'text-align:right;'} %>
+            </td>
             <!-- A -->
-            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.assist %>"></td>
+            <td>
+              <%= text_field_tag :assist, player.assist, {size:2, maxlength:3, style:'text-align:right;'} %>
+            </td>
             <!-- P -->
-            <td><input type="text" size="2" maxlength="3" style="text-align:right;" value="<%= player.penalties %>"></td>
+            <td>
+              <%= text_field_tag :penalties, player.penalties, {size:2, maxlength:3, style:'text-align:right;'} %>
+            </td>
             <!-- MVP -->
             <td>
-                <input type="hidden" value="<%= player.mvp_flg %>">
+              <%= hidden_field_tag :goal, player.mvp_flg, {size:2, maxlength:3, style:'text-align:right;'} %>
               <% if player.mvp_flg == 0 %>
                   <span class="label label-default">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
