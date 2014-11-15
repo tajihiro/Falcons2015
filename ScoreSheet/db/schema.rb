@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20141115085653) do
   end
 
   create_table "game_penalties", force: true do |t|
-    t.integer  "game_id",                    null: false
-    t.integer  "penalty_id",                 null: false
-    t.integer  "period",         default: 1, null: false
-    t.integer  "penalty_min",                null: false
-    t.integer  "penalty_sec",                null: false
-    t.integer  "penalty_time",               null: false
-    t.integer  "goal_member_id",             null: false
+    t.integer  "game_id",                       null: false
+    t.integer  "penalty_id",                    null: false
+    t.integer  "period",            default: 1, null: false
+    t.integer  "penalty_min",                   null: false
+    t.integer  "penalty_sec",                   null: false
+    t.integer  "penalty_time",                  null: false
+    t.integer  "penalty_member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

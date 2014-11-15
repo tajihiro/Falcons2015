@@ -318,116 +318,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                <% @game_panalties.each do |penalty| %>
                     <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
+                      <!--Half-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :period, penalty.period, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
+                      <!--#-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :penalty_member_id, penalty.penalty_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                      <!--Name-->
                       <td><span></span></td>
+                      <!--Time-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :penalty_min, penalty.penalty_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
+                        <%= text_field_tag :penalty_sec, penalty.penalty_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
+                      <!--P.Time-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :penalty_time, penalty.penalty_time, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
+                      <!--Penalty-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :penalty_id, penalty.id, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
                     </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                    </tr>
+                <% end %>
                 </tbody>
             </table>
         </div>

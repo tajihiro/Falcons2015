@@ -6,14 +6,17 @@ class ScoreSheetController < ApplicationController
     @game = Game.selected_game(season_id,game_id)
     @season = Season.selected_season(@game.season_id)
 
-    #Goal取得
-    @goals = Goal.details(@game.id)
 
     #SeasonMembers取得
     @season_members = SeasonMember.where(season_id:@game.season_id)
     #GameMembers取得
     @game_goalies = GameMember.game_goalies(@game.id)
     @game_players = GameMember.game_players(@game.id)
+
+    #Goals取得
+    @goals = Goal.details(@game.id)
+    #Penalties取得
+    @game_panalties = GamePenalty.details(@game.id)
 
     #表示項目取得
     @divisions = Division.all
