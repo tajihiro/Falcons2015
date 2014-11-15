@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109120623) do
+ActiveRecord::Schema.define(version: 20141115085653) do
 
   create_table "divisions", force: true do |t|
     t.string   "division_name",    limit: 30, null: false
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(version: 20141109120623) do
     t.float    "penalties",     limit: 24, default: 0.0, null: false
     t.integer  "goalie_flg",               default: 0,   null: false
     t.integer  "mvp_flg",                  default: 0,   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_penalties", force: true do |t|
+    t.integer  "game_id",                    null: false
+    t.integer  "penalty_id",                 null: false
+    t.integer  "period",         default: 1, null: false
+    t.integer  "penalty_min",                null: false
+    t.integer  "penalty_sec",                null: false
+    t.integer  "penalty_time",               null: false
+    t.integer  "goal_member_id",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,6 +80,18 @@ ActiveRecord::Schema.define(version: 20141109120623) do
     t.datetime "updated_at"
   end
 
+  create_table "goals", force: true do |t|
+    t.integer  "game_id",                       null: false
+    t.integer  "period",            default: 1, null: false
+    t.integer  "goal_min",                      null: false
+    t.integer  "goal_sec",                      null: false
+    t.integer  "goal_member_id",                null: false
+    t.integer  "assist1_member_id"
+    t.integer  "assist2_member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "members", force: true do |t|
     t.string   "last_name",     limit: 20,             null: false
     t.string   "first_name",    limit: 20,             null: false
@@ -86,6 +110,12 @@ ActiveRecord::Schema.define(version: 20141109120623) do
   end
 
   add_index "members", ["position_id"], name: "index_members_on_position_id", using: :btree
+
+  create_table "penalties", force: true do |t|
+    t.string   "penalty_name", limit: 30, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "positions", force: true do |t|
     t.string   "position_name", limit: 8, null: false

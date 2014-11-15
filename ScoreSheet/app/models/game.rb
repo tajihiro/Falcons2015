@@ -8,7 +8,9 @@ class Game < ActiveRecord::Base
   belongs_to :away_team, class_name:Team, foreign_key:'away_team_id'
 
   has_many :game_members
-  has_many :member, :through => :game_members
+  has_many :member, through:'game_members'
+  has_many :goals
+  has_many :penalties, through:'game_penalties'
 
 
   #Method

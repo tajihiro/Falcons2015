@@ -261,267 +261,38 @@
                       <th>Name</th>
                     </tr>
                 </thead>
-                <tbody>
+              <tbody>
+                    <% @goals.each do |goal|%>
                     <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                      <!--Half-->
                       <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
+                        <%= text_field_tag :period, goal.period, {size:2, maxlength:3, style:'text-align:right;'} %>
                       </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                      <!--Time-->
+                      <td>
+                        <%= text_field_tag :goal_min, goal.goal_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
+                        <%= text_field_tag :goal_sec, goal.goal_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
+                      </td>
+                      <!--G-->
+                      <td>
+                        <%= text_field_tag :goal_member_id, goal.goal_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+                      </td>
+                      <!--Name-->
                       <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                      <!--A-->
+                      <td>
+                        <%= text_field_tag :assist1_member_id, goal.assist1_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+                      </td>
+                      <!--Name-->
                       <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
+                      <!--A-->
+                      <td>
+                        <%= text_field_tag :assist2_member_id, goal.assist2_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+                      </td>
+                      <!--Name-->
                       <td><span></span></td>
                     </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td>
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">:
-                        <input type="text" size="2" maxlength="3" style="text-align:right;">
-                      </td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                      <td><input type="text" size="2" maxlength="3" style="text-align:right;"></td>
-                      <td><span></span></td>
-                    </tr>
+                  <% end %>
                 </tbody>
             </table>
         </div>
@@ -531,7 +302,7 @@
 
 
 <!-- Penalty Table-->
-    <h4>Penalty summary</h4>
+<h4>Penalty summary</h4>
 <div>
     <div class="row">
         <div class="col-md-12">
