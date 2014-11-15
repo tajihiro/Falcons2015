@@ -10,7 +10,7 @@ class Game < ActiveRecord::Base
   #Method
   def self.selected_game(season_id, id)
     if season_id.nil? && id.nil?
-      selected_game = last
+      selected_game = all.order('disp_order').last
     elsif season_id.nil? && id.present?
       selected_game = find(id)
     elsif season_id.present? && id.nil?
@@ -18,7 +18,7 @@ class Game < ActiveRecord::Base
     else
       selected_game = where(season_id:season_id, id:id).order('disp_order').last
     end
-    selected_game.nil? ? last : selected_game
+    selected_game.nil? ? all.order('disp_order').last : selected_game
   end
 
   def self.games_navi(season_id)
