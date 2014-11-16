@@ -50,6 +50,4 @@ class GameMember < ActiveRecord::Base
     #         order by (S.goal + S.assist) DESC"
     # find_by_sql([sql,{game_id:game_id}])
   end
-
-
 end

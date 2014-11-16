@@ -16,11 +16,13 @@
               <th colspan="2">Date : <%= @game.game_date %></th>
               <th colspan="3">Time : <span><%= @game.game_time %></span></th>
               <th colspan="3">
-                <% if @game.playoff_flg == 1 %>
-                    <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                <% if @game.playoff_flg == 0 %>
+                    <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                    Season Game
+                <% else %>
+                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                     Play Off Game
                 <% end%>
-                <%= @game.playoff_flg %>
               </th>
               <th colspan="4">Place : <%= @game.game_place %></th>
             </tr>
