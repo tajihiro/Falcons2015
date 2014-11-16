@@ -157,12 +157,12 @@
               <tr>
                 <!-- # -->
                 <td style="text-align: center">
-                  <%= goalie.jersey_number %>
+                  <%= goalie.member.jersey_number %>
                 </td>
                 <!-- G -->
-                <td style="text-align: center"><%= goalie.position_name %></td>
+                <td style="text-align: center"><%= goalie.member.position.position_name %></td>
                 <!-- Name -->
-                <td><span><%= goalie.goalie_name %></span></td>
+                <td><span><%= goalie.member.member_name %></span></td>
                 <!-- 前半 -->
                 <td style="text-align: right">
                   <%= goalie.goal_against %>/
@@ -212,15 +212,15 @@
           <tr>
             <!-- # -->
             <td style="text-align: center">
-              <%= player.jersey_number %>
+              <%= player.member.jersey_number %>
             </td>
             <!-- Pos. -->
             <td style="text-align: center">
-              <span><%= player.position_name %></span>
+              <span><%= player.member.position.position_name %></span>
             </td>
             <!-- Name -->
             <td>
-              <span><%= player.player_name %></span>
+              <span><%= player.member.member_name %></span>
             </td>
             <!-- G -->
             <td style="text-align: right">
@@ -292,7 +292,7 @@
                       </td>
                       <!--Name-->
                       <td>
-                        <span><%= goal.goal_member.last_name %> <%= goal.goal_member.first_name %></span>
+                        <span><%= goal.goal_member.member_name %></span>
                       </td>
                       <!--A-->
                       <td style="text-align: center">
@@ -303,7 +303,7 @@
                       <!--Name-->
                       <td>
                         <% if goal.assist1_member.present? %>
-                            <span><%= goal.assist1_member.last_name %> <%= goal.assist1_member.first_name %></span>
+                            <span><%= goal.assist1_member.member_name %></span>
                         <% end%>
                       </td>
                       <!--A-->
@@ -315,7 +315,7 @@
                       <!--Name-->
                       <td>
                         <% if goal.assist2_member.present? %>
-                            <span><%= goal.assist2_member.last_name %> <%= goal.assist2_member.first_name %></span>
+                            <span><%= goal.assist2_member.member_name %></span>
                         <% end%>
                       </td>
                     </tr>
@@ -345,6 +345,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 <% @game_panalties.each do |penalty| %>
                     <tr>
                       <!--Half-->
@@ -353,10 +354,12 @@
                       </td>
                       <!--#-->
                       <td style="text-align: center">
-                        <%= penalty.penalty_member_id %>
+                        <%= penalty.member.jersey_number %>
                       </td>
                       <!--Name-->
-                      <td><span><%= penalty.penalty_member_id %></span></td>
+                      <td style="text-align: center">
+                        <%= penalty.member.member_name %>
+                      </td>
                       <!--Time-->
                       <td style="text-align: right">
                         <%= penalty.penalty_min %> :
@@ -368,7 +371,7 @@
                       </td>
                       <!--Penalty-->
                       <td>
-                        <%= penalty.id %>
+                        <%= penalty.penalty.penalty_name %>
                       </td>
                     </tr>
                 <% end %>
