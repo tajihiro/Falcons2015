@@ -5,6 +5,7 @@ game1:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 1st
   home_team_id: 1
   home_team_score: 2
@@ -22,6 +23,7 @@ game2:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 2nd
   home_team_id: 7
   home_team_score: 5
@@ -39,6 +41,7 @@ game3:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 3rd
   home_team_id: 1 
   home_team_score: 2
@@ -56,6 +59,7 @@ game4:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 4th
   home_team_id: 1 
   home_team_score: 10
@@ -73,6 +77,7 @@ game5:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 5th
   home_team_id: 14 
   home_team_score: 0
@@ -90,6 +95,7 @@ game6:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 6th
   home_team_id: 8 
   home_team_score: 5
@@ -107,6 +113,7 @@ game7:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 7th
   home_team_id: 1 
   home_team_score: 9
@@ -124,6 +131,7 @@ game8:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 8th
   home_team_id: 6 
   home_team_score: 10
@@ -141,6 +149,7 @@ game9:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 9th
   home_team_id: 1 
   home_team_score: 7
@@ -158,6 +167,7 @@ game_final:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 2
   game_name: final
   home_team_id: 1
   home_team_score: 7
@@ -175,6 +185,7 @@ game10:
   season_id: 28
   division_id: 4
   team_id: 1
+  game_type_id: 1
   game_name: 10th
   home_team_id: 1
   home_team_score: 7

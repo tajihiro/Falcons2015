@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
   #Association
   belongs_to :season
   belongs_to :division
+  belongs_to :game_type
 
   belongs_to :team
   belongs_to :home_team, class_name:Team, foreign_key:'home_team_id'

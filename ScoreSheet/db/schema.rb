@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115085653) do
+ActiveRecord::Schema.define(version: 20141118170000) do
 
   create_table "divisions", force: true do |t|
     t.string   "division_name",    limit: 30, null: false
@@ -46,10 +46,17 @@ ActiveRecord::Schema.define(version: 20141115085653) do
     t.datetime "updated_at"
   end
 
+  create_table "game_types", force: true do |t|
+    t.string   "game_type",  limit: 10, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "games", force: true do |t|
     t.integer  "season_id",                                  null: false
     t.integer  "division_id",                                null: false
     t.integer  "team_id",                                    null: false
+    t.integer  "game_type_id",                               null: false
     t.string   "game_name",          limit: 60,              null: false
     t.integer  "home_team_id",                               null: false
     t.integer  "home_team_p1_score",             default: 0, null: false
@@ -75,7 +82,6 @@ ActiveRecord::Schema.define(version: 20141115085653) do
     t.text     "movie_url"
     t.text     "comments"
     t.integer  "disp_order",                     default: 0
-    t.integer  "playoff_flg",                    default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -10,7 +10,9 @@
         </li>
     <% end %>
         <li>
-            <a href="#"><span class="glyphicon glyphicon-plus-sign">Add</span></a>
+          <%= link_to score_sheet_new_path(season_id:@game.season_id) do %>
+            <span class="glyphicon glyphicon-plus-sign">Add</span>
+          <% end %>
         </li>
   </ul>
 </div>

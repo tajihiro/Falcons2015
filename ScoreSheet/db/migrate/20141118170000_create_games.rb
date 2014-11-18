@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.references :season, :null => false
       t.references :division, :null => false
       t.references :team, :null => false
+      t.references :game_type, :null => false
       t.string :game_name, :limit => 60, :null => false
       t.integer :home_team_id, :null => false
       t.integer :home_team_p1_score, :null => false, :default => 0
@@ -29,7 +30,6 @@ class CreateGames < ActiveRecord::Migration
       t.text :movie_url
       t.text :comments
       t.integer :disp_order, :default => 0
-      t.integer :playoff_flg, :null => false, :default => 0
 
       t.timestamps
     end

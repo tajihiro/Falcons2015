@@ -1,14 +1,21 @@
 <!-- Game Navi -->
-<%= render partial: 'application/games_navi', selected_game:@game, games_navi:@games_navi %>
+<%= render partial: 'application/games_navi' %>
 <!--// Game Navi -->
 
 <p></p>
 
 <!-- Game Table-->
-<h4>Game</h4>
+<div style="text-align: right">
+  <%= link_to score_sheet_edit_path(season_id:@game.season_id, game_id:@game.id) do%>
+      <span class="label label-info">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
+      </span>
+  <% end %>
+</div>
 <%=form_for @game do |f| %>
-<div>
-    <div class="row">
+    <h4>Edit Game <%= f.text_field :game_name %></h4>
+    <div>
+      <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered">
 
@@ -133,8 +140,8 @@
             </tbody>
           </table>
         </div>
+      </div>
     </div>
-</div>
 <% end %>
 <!--// Game Table-->
 
@@ -142,177 +149,177 @@
 <!-- Roster Table-->
 <h4>Roster</h4>
 <div>
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-bordered table-striped">
-          <thead>
-          <tr>
-            <th style="text-align: center">#</th>
-            <th style="text-align: center">Pos.</th>
-            <th style="text-align: center">Name</th>
-            <th style="text-align: center">前半</th>
-            <th style="text-align: center">後半</th>
-            <th style="text-align: center">OT</th>
-            <th style="text-align: center">MVP</th>
-          </tr>
-          </thead>
-          <!--Goalie-->
-          <tbody>
-          <% @game_goalies.each do |goalie| %>
-              <tr>
-                <!-- # -->
-                <td>
-                  <%= text_field_tag :member_id, goalie.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                </td>
-                <!-- G -->
-                <td><%= goalie.position_name %></td>
-                <!-- Name -->
-                <td><span><%= goalie.goalie_name %></span></td>
-                <!-- 前半 -->
-                <td>
-                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
-                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
-                </td>
-                <!-- 後半 -->
-                <td>
-                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
-                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
-                </td>
-                <!-- OT -->
-                <td>
-                  <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
-                  <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
-                </td>
-                <!-- MVP -->
-                <td>
-                  <%= hidden_field_tag :mvp_flg, goalie.mvp_flg %>
-                  <% if goalie.mvp_flg == 0 %>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th style="text-align: center">#</th>
+          <th style="text-align: center">Pos.</th>
+          <th style="text-align: center">Name</th>
+          <th style="text-align: center">前半</th>
+          <th style="text-align: center">後半</th>
+          <th style="text-align: center">OT</th>
+          <th style="text-align: center">MVP</th>
+        </tr>
+        </thead>
+        <!--Goalie-->
+        <tbody>
+        <% @game_goalies.each do |goalie| %>
+            <tr>
+              <!-- # -->
+              <td>
+                <%= text_field_tag :member_id, goalie.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- G -->
+              <td><%= goalie.member.position.position_name %></td>
+              <!-- Name -->
+              <td><span><%= goalie.member.member_name %></span></td>
+              <!-- 前半 -->
+              <td>
+                <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- 後半 -->
+              <td>
+                <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- OT -->
+              <td>
+                <%= text_field_tag :goal_against, goalie.goal_against,{size:2, maxlength:3, style:'text-align:right;'} %>/
+                <%= text_field_tag :shots_against, goalie.shots_against,{size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- MVP -->
+              <td>
+                <%= hidden_field_tag :mvp_flg, goalie.mvp_flg %>
+                <% if goalie.mvp_flg == 0 %>
                   <span class="label label-default">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                   </span>
-                  <% else %>
+                <% else %>
                   <span class="label label-warning">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </span>
-                  <% end %>
-                </td>
-              </tr>
-          <% end %>
-          </tbody>
-          <!--//Goalie-->
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+        <!--//Goalie-->
 
-          <!--Player-->
-          <thead>
-          <tr>
-            <th style="text-align: center">#</th>
-            <th style="text-align: center">Pos.</th>
-            <th style="text-align: center">Name</th>
-            <th style="text-align: center">G</th>
-            <th style="text-align: center">A</th>
-            <th style="text-align: center">P</th>
-            <th style="text-align: center">MVP</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @game_players.each do |player| %>
-          <tr>
-            <!-- # -->
-            <td>
-              <%= text_field_tag :member_id, player.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-            </td>
-            <!-- Pos. -->
-            <td><span><%= player.position_name %></span></td>
-            <!-- Name -->
-            <td><span><%= player.player_name %></span></td>
-            <!-- G -->
-            <td>
-              <%= text_field_tag :goal, player.goal, {size:2, maxlength:3, style:'text-align:right;'} %>
-            </td>
-            <!-- A -->
-            <td>
-              <%= text_field_tag :assist, player.assist, {size:2, maxlength:3, style:'text-align:right;'} %>
-            </td>
-            <!-- P -->
-            <td>
-              <%= text_field_tag :penalties, player.penalties, {size:2, maxlength:3, style:'text-align:right;'} %>
-            </td>
-            <!-- MVP -->
-            <td>
-              <%= hidden_field_tag :goal, player.mvp_flg, {size:2, maxlength:3, style:'text-align:right;'} %>
-              <% if player.mvp_flg == 0 %>
+        <!--Player-->
+        <thead>
+        <tr>
+          <th style="text-align: center">#</th>
+          <th style="text-align: center">Pos.</th>
+          <th style="text-align: center">Name</th>
+          <th style="text-align: center">G</th>
+          <th style="text-align: center">A</th>
+          <th style="text-align: center">P</th>
+          <th style="text-align: center">MVP</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @game_players.each do |player| %>
+            <tr>
+              <!-- # -->
+              <td>
+                <%= text_field_tag :member_id, player.member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- Pos. -->
+              <td><span><%= player.member.position.position_name %></span></td>
+              <!-- Name -->
+              <td><span><%= player.member.member_name %></span></td>
+              <!-- G -->
+              <td>
+                <%= text_field_tag :goal, player.goal, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- A -->
+              <td>
+                <%= text_field_tag :assist, player.assist, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- P -->
+              <td>
+                <%= text_field_tag :penalties, player.penalties, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!-- MVP -->
+              <td>
+                <%= hidden_field_tag :goal, player.mvp_flg, {size:2, maxlength:3, style:'text-align:right;'} %>
+                <% if player.mvp_flg == 0 %>
                   <span class="label label-default">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                   </span>
-              <% else %>
+                <% else %>
                   <span class="label label-warning">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </span>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-          </tbody>
-          <!--//Player-->
-        </table>
-      </div>
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+        <!--//Player-->
+      </table>
     </div>
+  </div>
 </div>
 <!--// Roster Table-->
 
 <!-- Goals Table-->
 <h4>Goals</h4>
 <div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                      <th style="text-align: center">Half</th>
-                      <th style="text-align: center">Time</th>
-                      <th style="text-align: center">G</th>
-                      <th style="text-align: center">Name</th>
-                      <th style="text-align: center">A</th>
-                      <th style="text-align: center">Name</th>
-                      <th style="text-align: center">A</th>
-                      <th style="text-align: center">Name</th>
-                    </tr>
-                </thead>
-              <tbody>
-                    <% @goals.each do |goal|%>
-                    <tr>
-                      <!--Half-->
-                      <td>
-                        <%= text_field_tag :period, goal.period, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Time-->
-                      <td>
-                        <%= text_field_tag :goal_min, goal.goal_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
-                        <%= text_field_tag :goal_sec, goal.goal_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--G-->
-                      <td>
-                        <%= text_field_tag :goal_member_id, goal.goal_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Name-->
-                      <td><span></span></td>
-                      <!--A-->
-                      <td>
-                        <%= text_field_tag :assist1_member_id, goal.assist1_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Name-->
-                      <td><span></span></td>
-                      <!--A-->
-                      <td>
-                        <%= text_field_tag :assist2_member_id, goal.assist2_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Name-->
-                      <td><span></span></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th style="text-align: center">Half</th>
+          <th style="text-align: center">Time</th>
+          <th style="text-align: center">G</th>
+          <th style="text-align: center">Name</th>
+          <th style="text-align: center">A</th>
+          <th style="text-align: center">Name</th>
+          <th style="text-align: center">A</th>
+          <th style="text-align: center">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @goals.each do |goal|%>
+            <tr>
+              <!--Half-->
+              <td>
+                <%= text_field_tag :period, goal.period, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Time-->
+              <td>
+                <%= text_field_tag :goal_min, goal.goal_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
+                <%= text_field_tag :goal_sec, goal.goal_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--G-->
+              <td>
+                <%= text_field_tag :goal_member_id, goal.goal_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Name-->
+              <td><span></span></td>
+              <!--A-->
+              <td>
+                <%= text_field_tag :assist1_member_id, goal.assist1_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Name-->
+              <td><span></span></td>
+              <!--A-->
+              <td>
+                <%= text_field_tag :assist2_member_id, goal.assist2_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Name-->
+              <td><span></span></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 <!--// Goals Table-->
 
@@ -320,51 +327,51 @@
 <!-- Penalty Table-->
 <h4>Penalty summary</h4>
 <div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                      <th style="text-align: center">Half</th>
-                      <th style="text-align: center">#</th>
-                      <th style="text-align: center">Name</th>
-                      <th style="text-align: center">Time</th>
-                      <th style="text-align: center">P.Time</th>
-                      <th style="text-align: center">Penalty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% @game_panalties.each do |penalty| %>
-                    <tr>
-                      <!--Half-->
-                      <td>
-                        <%= text_field_tag :period, penalty.period, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--#-->
-                      <td>
-                        <%= text_field_tag :penalty_member_id, penalty.penalty_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Name-->
-                      <td><span></span></td>
-                      <!--Time-->
-                      <td>
-                        <%= text_field_tag :penalty_min, penalty.penalty_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
-                        <%= text_field_tag :penalty_sec, penalty.penalty_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--P.Time-->
-                      <td>
-                        <%= text_field_tag :penalty_time, penalty.penalty_time, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                      <!--Penalty-->
-                      <td>
-                        <%= text_field_tag :penalty_id, penalty.id, {size:2, maxlength:3, style:'text-align:right;'} %>
-                      </td>
-                    </tr>
-                <% end %>
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th style="text-align: center">Half</th>
+          <th style="text-align: center">#</th>
+          <th style="text-align: center">Name</th>
+          <th style="text-align: center">Time</th>
+          <th style="text-align: center">P.Time</th>
+          <th style="text-align: center">Penalty</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @game_panalties.each do |penalty| %>
+            <tr>
+              <!--Half-->
+              <td>
+                <%= text_field_tag :period, penalty.period, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--#-->
+              <td>
+                <%= text_field_tag :penalty_member_id, penalty.penalty_member_id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Name-->
+              <td><span></span></td>
+              <!--Time-->
+              <td>
+                <%= text_field_tag :penalty_min, penalty.penalty_min, {size:2, maxlength:3, style:'text-align:right;'} %> :
+                <%= text_field_tag :penalty_sec, penalty.penalty_sec, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--P.Time-->
+              <td>
+                <%= text_field_tag :penalty_time, penalty.penalty_time, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+              <!--Penalty-->
+              <td>
+                <%= text_field_tag :penalty_id, penalty.id, {size:2, maxlength:3, style:'text-align:right;'} %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 <!-- Penalty Table-->
 
