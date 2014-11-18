@@ -15,4 +15,9 @@
 /log/*.log
 /tmp
 
+# Ignore Rubymine config files.
 .idea
+
+# Ignore important files.
+/config/database.yml
+/config/secrets.yml
