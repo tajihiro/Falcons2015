@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'score_sheet/index'
   get 'score_sheet/new'
   get 'score_sheet/edit'
+  post 'score_sheet/create'
+  post 'score_sheet/update'
 
   resources :seasons
   resources :games

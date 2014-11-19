@@ -64,37 +64,32 @@ class ScoreSheetController < ApplicationController
   end
 
   #
-  # 新規登録処理
-  #
-  def create
-
-  end
-
-  #
   # 更新画面表示処理
   #
   def edit
     season_id = params[:season_id]
     game_id = params[:game_id]
-    #Game取得
-    @game = Game.selected_game(season_id,game_id)
+    season_id = params[:season_id]
+
+    #新規インスタンス取得
+    @game = Game.new
+    #初期値設定
+    @game.game_place = 'MiSC'
+    @game.division_id = 4
+    @game.game_type_id = 2
+
+    #
     @season = Season.selected_season(@game.season_id)
-
-    #SeasonMembers取得
-    @season_members = SeasonMember.where(season_id:@game.season_id)
-    #GameMembers取得
-    @game_goalies = GameMember.game_goalies(@game.id)
-    @game_players = GameMember.game_players(@game.id)
-
-    #Goals取得
-    @goals = Goal.details(@game.id)
-    #Penalties取得
-    @game_panalties = GamePenalty.details(@game.id)
+    @season_goalies = SeasonMember.season_goalies(@season.id)
+    @season_players = SeasonMember.season_players(@season.id)
 
     #表示項目取得
+    @seasons = Season.all.order('id DESC')
+    @game_types = GameType.all
     @divisions = Division.all
-    @game_types =
-        @season_teams = SeasonTeam.season_teams(@game.season_id)
+    @season_teams = SeasonTeam.season_teams(@season.id)
+    @goals = Array.new(15,Goal.new)
+    @game_panalties = Array.new(10, GamePenalty.new)
 
     #Seasonメニュー取得
     @seasons_menu = Season.seasons_menu
@@ -103,16 +98,47 @@ class ScoreSheetController < ApplicationController
   end
 
   #
+  # 新規登録処理
+  #
+  def create
+    #パラメータ取得
+
+    #更新処理
+    respond_to do |format|
+      Game.transaction do
+
+      end
+      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
+    end
+  end
+
+
+  #
   # 更新処理
   #
   def update
+    #パラメータ取得
 
+    #更新処理
+    respond_to do |format|
+      Game.transaction do
+
+      end
+      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully updated.' }
+    end
   end
 
   #
   # 削除処理
   #
-  def delete
+  def destroy
+    #削除処理
+    respond_to do |format|
+      Game.transaction do
+
+      end
+      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully deleted.' }
+    end
 
   end
 
