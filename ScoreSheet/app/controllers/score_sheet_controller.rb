@@ -104,21 +104,38 @@ class ScoreSheetController < ApplicationController
   #
   def create
     #パラメータ取得
+    #Game
     @game = Game.new(game_params)
+    #GameMembers
     member_ids = params[:member_id]
     goals = params[:goal]
     assists = params[:assist]
     penalties = params[:penalties]
+    shots_against = params[:shots_against]
     goal_againsts = params[:goal_against]
     shot_on_goal = params[:shot_on_goal]
     goalie_flgs = params[:goalie_flg]
     mvp_flgs = params[:mvp_flg]
     join_flgs = params[:join_flg]
+    #Goals
+    goal_periods = params[:period]
+    goal_mins = params[:goal_min]
+    goal_secs = params[:goal_sec]
+    goal_member_ids = params[:goal_member_id]
+    assist1_member_ids = params[:assist1_member_id]
+    assist2_member_ids = params[:assist2_member_id]
+    #Penalties
+    penalty_ids = params[:penalty_id]
+    penalty_periods = params[:penalty_period]
+    penalty_mins = params[:penalty_min]
+    penalty_secs = params[:penalty_sec]
+    penalty_times = params[:penalty_time]
+    penalty_member_ids = params[:penalty_member_id]
 
     #登録処理
     respond_to do |format|
       Game.transaction do
-        @game.save
+        #@game.save
       end
       format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
     end
