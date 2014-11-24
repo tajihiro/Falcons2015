@@ -40,16 +40,18 @@ class ScoreSheetController < ApplicationController
     #新規インスタンス取得
     @game = Game.new
     #初期値設定
+    @game.season_id = season_id
+    @game.team_id = 1
     @game.game_place = 'MiSC'
     @game.division_id = 4
     @game.game_type_id = 2
 
-    #
+    #Season情報取得
     @season = Season.selected_season(@game.season_id)
     @season_goalies = SeasonMember.season_goalies(@season.id)
     @season_players = SeasonMember.season_players(@season.id)
 
-    #表示項目取得
+    #コンポーネント項目取得
     @seasons = Season.all.order('id DESC')
     @game_types = GameType.all
     @divisions = Division.all
@@ -102,11 +104,21 @@ class ScoreSheetController < ApplicationController
   #
   def create
     #パラメータ取得
+    @game = Game.new(game_params)
+    member_ids = params[:member_id]
+    goals = params[:goal]
+    assists = params[:assist]
+    penalties = params[:penalties]
+    goal_againsts = params[:goal_against]
+    shot_on_goal = params[:shot_on_goal]
+    goalie_flgs = params[:goalie_flg]
+    mvp_flgs = params[:mvp_flg]
+    join_flgs = params[:join_flg]
 
-    #更新処理
+    #登録処理
     respond_to do |format|
       Game.transaction do
-
+        @game.save
       end
       format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
     end
@@ -142,4 +154,15 @@ class ScoreSheetController < ApplicationController
 
   end
 
+  private
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params[:game].permit(:season_id, :division_id, :team_id, :game_type_id, :game_name,
+                         :home_team_id, :home_team_p1_score, :home_team_p2_score, :home_team_ot_score, :home_team_score,
+                         :home_team_p1_shots, :home_team_p2_shots, :home_team_ot_shots, :home_team_shots,
+                         :away_team_id, :away_team_p1_score, :away_team_p2_score, :away_team_ot_score, :away_team_score,
+                         :away_team_p1_shots, :away_team_p2_shots, :away_team_ot_shots, :away_team_shots,
+                         :game_date, :game_time, :game_place, :movie_url, :comments, :disp_order
+    )
+  end
 end
