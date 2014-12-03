@@ -111,21 +111,22 @@ class ScoreSheetController < ApplicationController
     goals = params[:goal]
     assists = params[:assist]
     penalties = params[:penalties]
-    shots_against = params[:shots_against]
     goal_againsts = params[:goal_against]
-    shot_on_goal = params[:shot_on_goal]
+    shots_on_goals = params[:shots_on_goal]
+    shots_againsts = params[:shots_against]
     goalie_flgs = params[:goalie_flg]
     mvp_flgs = params[:mvp_flg]
     join_flgs = params[:join_flg]
     #Goals
-    goal_periods = params[:period]
+    goal_nos = params[:goal_no]
+    goal_periods = params[:goal_period]
     goal_mins = params[:goal_min]
     goal_secs = params[:goal_sec]
     goal_member_ids = params[:goal_member_id]
     assist1_member_ids = params[:assist1_member_id]
     assist2_member_ids = params[:assist2_member_id]
     #Penalties
-    penalty_ids = params[:penalty_id]
+    penalty_nos = params[:penalty_no]
     penalty_periods = params[:penalty_period]
     penalty_mins = params[:penalty_min]
     penalty_secs = params[:penalty_sec]
@@ -135,9 +136,55 @@ class ScoreSheetController < ApplicationController
     #登録処理
     respond_to do |format|
       Game.transaction do
-        #@game.save
+        #Game登録
+          if @game.save then
+          #GameMember登録
+          member_ids.each_with_index do |member_id, i|
+            if !join_flgs.nil? then
+              if join_flgs.key?(member_id) then
+                @game_member = GameMember.new
+                @game_member.game_id = @game.id
+                @game_member.member_id = member_ids[i]
+                @game_member.goal = goals[i]
+                @game_member.assist = assists[i]
+                @game_member.goal_against = goal_againsts[i]
+                #@game_member.shots_on_goal = shots_on_goals[i]
+                @game_member.shots_against = shots_againsts[i]
+                @game_member.penalties = penalties[i]
+                @game_member.goalie_flg = goalie_flgs[i].nil? ? 0 : 1
+                if !mvp_flgs.nil? then
+                  @game_member.mvp_flg = (mvp_flgs.key?(member_id) ? 1 : 0)
+                end
+                @game_member.save
+              end
+            end
+          end
+          #Goals登録
+          goal_nos.each_with_index do |goal_no, i|
+            @goal = Goal.new
+            @goal.game_id = @game.id
+            @goal.period = goal_periods[i]
+            @goal.goal_min = goal_mins[i]
+            @goal.goal_sec = goal_secs[i]
+            @goal.goal_member_id = goal_member_ids[i]
+            @goal.assist1_member_id = assist1_member_ids[i]
+            @goal.assist2_member_id = assist2_member_ids[i]
+            #@goal.save
+          end
+          #Penalties登録
+          penalty_nos.each_with_index do |penalty_no, i|
+            @penalty = GamePenalty.new
+            @penalty.game_id = @game.id
+            @penalty.period = penalty_periods[i]
+            @penalty.penalty_min = penalty_mins[i]
+            @penalty.penalty_sec = penalty_secs[i]
+            @penalty.penalty_time = penalty_times[i]
+            @penalty.penalty_member_id = penalty_member_ids[i]
+            #@penalty.save
+          end
+          format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
+        end
       end
-      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
     end
   end
 
@@ -151,6 +198,7 @@ class ScoreSheetController < ApplicationController
     #更新処理
     respond_to do |format|
       Game.transaction do
+
 
       end
       format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully updated.' }
@@ -182,4 +230,5 @@ class ScoreSheetController < ApplicationController
                          :game_date, :game_time, :game_place, :movie_url, :comments, :disp_order
     )
   end
+
 end
