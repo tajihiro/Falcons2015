@@ -17,19 +17,19 @@ class Game < ActiveRecord::Base
   #Method
   def self.selected_game(season_id, id)
     if season_id.nil? && id.nil?
-      selected_game = all.order('disp_order').last
+      selected_game = all.order(:game_date,:game_time).last
     elsif season_id.nil? && id.present?
       selected_game = find(id)
     elsif season_id.present? && id.nil?
-      selected_game = where(season_id:season_id).order('disp_order').last
+      selected_game = where(season_id:season_id).order(:game_date,:game_time).last
     else
-      selected_game = where(season_id:season_id, id:id).order('disp_order').last
+      selected_game = where(season_id:season_id, id:id).order(:game_date,:game_time).last
     end
-    selected_game.nil? ? all.order('disp_order').last : selected_game
+    selected_game.nil? ? all.order(:game_date,:game_time).last : selected_game
   end
 
   def self.games_navi(season_id)
-    where(season_id:season_id).order(:disp_order)
+    where(season_id:season_id).order(:game_date,:game_time)
   end
 
 end

@@ -162,29 +162,33 @@ class ScoreSheetController < ApplicationController
           end
           #Goals登録
           goal_nos.each_with_index do |goal_no, i|
-            @goal = Goal.new
-            @goal.game_id = @game.id
-            @goal.period = goal_periods[i]
-            @goal.goal_min = goal_mins[i]
-            @goal.goal_sec = goal_secs[i]
-            @goal.goal_member_id = goal_member_ids[i]
-            @goal.assist1_member_id = assist1_member_ids[i]
-            @goal.assist2_member_id = assist2_member_ids[i]
-            @goal.save
+            if goal_periods[i].to_i > 0
+              @goal = Goal.new
+              @goal.game_id = @game.id
+              @goal.period = goal_periods[i]
+              @goal.goal_min = goal_mins[i]
+              @goal.goal_sec = goal_secs[i]
+              @goal.goal_member_id = goal_member_ids[i]
+              @goal.assist1_member_id = assist1_member_ids[i]
+              @goal.assist2_member_id = assist2_member_ids[i]
+              @goal.save
+            end
           end
           #Penalties登録
           penalty_nos.each_with_index do |penalty_no, i|
-            @penalty = GamePenalty.new
-            @penalty.game_id = @game.id
-            @penalty.period = penalty_periods[i]
-            @penalty.penalty_min = penalty_mins[i]
-            @penalty.penalty_sec = penalty_secs[i]
-            @penalty.penalty_time = penalty_times[i]
-            @penalty.penalty_member_id = penalty_member_ids[i]
-            @penalty.penalty_id = penalty_ids[i]
-            @penalty.save
+            if penalty_periods[i].to_i > 0
+              @penalty = GamePenalty.new
+              @penalty.game_id = @game.id
+              @penalty.period = penalty_periods[i]
+              @penalty.penalty_min = penalty_mins[i]
+              @penalty.penalty_sec = penalty_secs[i]
+              @penalty.penalty_time = penalty_times[i]
+              @penalty.penalty_member_id = penalty_member_ids[i]
+              @penalty.penalty_id = penalty_ids[i]
+              @penalty.save
+            end
           end
-          format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
+          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: 'Game was successfully created.' }
         end
       end
     end

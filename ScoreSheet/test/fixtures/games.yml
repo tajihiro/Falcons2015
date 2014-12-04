@@ -173,7 +173,25 @@ game_final:
   home_team_score: 7
   away_team_id: 11
   away_team_score: 4
-  game_date: 2013-06-09
+  game_date: 2013-06-10
+  game_time: '17:30'
+  game_place: Misc
+  disp_order: 11
+  movie_url: http://xxx/
+  comments: コメント
+
+game_semi_final:
+  id: 12
+  season_id: 28
+  division_id: 4
+  team_id: 1
+  game_type_id: 2
+  game_name: final
+  home_team_id: 1
+  home_team_score: 7
+  away_team_id: 11
+  away_team_score: 4
+  game_date: 2013-06-10
   game_time: '15:30'
   game_place: Misc
   disp_order: 11
