@@ -127,6 +127,7 @@ class ScoreSheetController < ApplicationController
     assist2_member_ids = params[:assist2_member_id]
     #Penalties
     penalty_nos = params[:penalty_no]
+    penalty_ids = params[:penalty_id]
     penalty_periods = params[:penalty_period]
     penalty_mins = params[:penalty_min]
     penalty_secs = params[:penalty_sec]
@@ -169,7 +170,7 @@ class ScoreSheetController < ApplicationController
             @goal.goal_member_id = goal_member_ids[i]
             @goal.assist1_member_id = assist1_member_ids[i]
             @goal.assist2_member_id = assist2_member_ids[i]
-            #@goal.save
+            @goal.save
           end
           #Penalties登録
           penalty_nos.each_with_index do |penalty_no, i|
@@ -180,7 +181,8 @@ class ScoreSheetController < ApplicationController
             @penalty.penalty_sec = penalty_secs[i]
             @penalty.penalty_time = penalty_times[i]
             @penalty.penalty_member_id = penalty_member_ids[i]
-            #@penalty.save
+            @penalty.penalty_id = penalty_ids[i]
+            @penalty.save
           end
           format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully created.' }
         end
