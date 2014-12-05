@@ -183,6 +183,10 @@
                       <%= goalie.member.jersey_number %>
                       <%= hidden_field_tag 'member_id[]', goalie.member_id %>
                       <%= hidden_field_tag 'goalie_flg[]', 1 %>
+                      <%= hidden_field_tag 'goal[]', 0 %>
+                      <%= hidden_field_tag 'assist[]', 0 %>
+                      <%= hidden_field_tag 'penalties[]', 0 %>
+
                     </td>
                     <!-- Pos. -->
                     <td style="text-align: center">
@@ -307,7 +311,7 @@
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= text_field_tag 'goal_no[]', goal_no, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'goal_no[]', goal_no %>
                       <%= text_field_tag 'goal_period[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--Time-->
@@ -366,8 +370,8 @@
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= text_field_tag 'penalty_no[]', penalty_no, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
-                      <%= text_field_tag 'penalty_period[]', 1, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'penalty_no[]', penalty_no %>
+                      <%= text_field_tag 'penalty_period[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--#-->
                     <td style="text-align: center">
@@ -383,7 +387,7 @@
                     </td>
                     <!--P.Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag 'penalty_time[]', 2.0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_time[]', 0.0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--Penalty-->
                     <td>
