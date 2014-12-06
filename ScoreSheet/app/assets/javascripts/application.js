@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require angular.min
+//= require angular.resource.min
 //= require scoresheet

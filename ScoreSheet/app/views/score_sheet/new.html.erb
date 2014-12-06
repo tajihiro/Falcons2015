@@ -306,7 +306,7 @@
                 <th style="text-align: center">Name</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody ng-controller='memberListController'>
               <% @goals.each_with_index do |goal, goal_no| %>
                   <tr>
                     <!--Half-->
@@ -322,10 +322,14 @@
                     </td>
                     <!--G-->
                     <td style="text-align: center">
+                      <%= text_field_tag 'goal_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'goalJerseyNo' + goal_no.to_s,
+                                          'ng-change' => 'changeId('+goal_no.to_s+')'} %>
                       <%= text_field_tag 'goal_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
+                    <td><span>{{memberName<%= goal_no%>}}</span></td>
                     <!--A-->
                     <td style="text-align: center">
                       <%= text_field_tag 'assist1_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
