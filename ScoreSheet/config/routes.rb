@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'score_sheet#index'
   get 'score_sheet' => 'score_sheet#index'
   get 'score_sheet/index'
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :seasons
   resources :games
+  resources :members
+  get 'members/no/:jersey_number' => 'members#show_jersey_no'
 
   # resources :seasons do
   #   resources :games
@@ -33,7 +36,7 @@ Rails.application.routes.draw do
 
   # Example resource route with options:
   #   resources :products do
-  #     member do
+  #     members do
   #       get 'short'
   #       post 'toggle'
   #     end

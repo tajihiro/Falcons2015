@@ -4,7 +4,7 @@ class CreateSeasonMembers < ActiveRecord::Migration
       t.references :season, :null => false
       t.references :division, :null => false
       t.references :team, :null => false
-      t.references :member, :null => false
+      t.references :members, :null => false
 
       t.timestamps
     end
