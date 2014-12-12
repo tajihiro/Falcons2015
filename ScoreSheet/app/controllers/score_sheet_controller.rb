@@ -55,6 +55,7 @@ class ScoreSheetController < ApplicationController
     @seasons = Season.all.order('id DESC')
     @game_types = GameType.all
     @divisions = Division.all
+    @penalties = Penalty.penalties
     @season_teams = SeasonTeam.season_teams(@season.id)
     @goals = Array.new(15,Goal.new)
     @game_panalties = Array.new(10, GamePenalty.new)
@@ -89,6 +90,7 @@ class ScoreSheetController < ApplicationController
     @seasons = Season.all.order('id DESC')
     @game_types = GameType.all
     @divisions = Division.all
+    @penalties = Penalty.penalties
     @season_teams = SeasonTeam.season_teams(@season.id)
     @goals = Array.new(15,Goal.new)
     @game_panalties = Array.new(10, GamePenalty.new)

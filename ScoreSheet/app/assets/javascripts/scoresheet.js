@@ -64,22 +64,29 @@ var GoalListController = function($resource, $scope){
 // PenaltyList
 //
 var PenaltyListController = function($resource, $scope){
-    var res = $resource('/members/no/:jersey_no.json',
+    var resMember = $resource('/members/no/:jersey_no.json',
         {jersey_no: '@jersey_no'},
         {'query': { method:'GET'}});
     $scope.penaltyMemberIds = new Array();
     $scope.penaltyMemberNames = new Array();
-    //Penalty Member
+    //Get Penalty Member
     $scope.changePenalty = function(val, idx){
         $scope.penaltyMemberIds[idx] = '';
         $scope.penaltyMemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({jersey_no:val});
+        $scope.members = resMember.query({jersey_no:val});
         $scope.members.$promise.then(function(data){
             console.log(data.member_name);
             $scope.penaltyMemberIds[idx] = data.id;
             $scope.penaltyMemberNames[idx] = data.member_name;
         });
+    };
+    //Get Penalty
+    var resPenalty = $resource('/penalty/:query.json',
+        {penalty_name: '@penalty_name'},
+        {'query': { method:'GET'}});
+    $scope.getPenalty = function(name){
+        console.log("JOSN取得"+name);
     };
 };
 
