@@ -7,18 +7,23 @@ var NewScoresheetController = function($window, $scope, $location){
         //$window.location.href = location.path();
     };
 };
+
 var MemberListController = function($resource, $scope){
-    var res = $resource('/members.json');
-    $scope.members = res.query();
-    $scope.memberName0;
-    $scope.memberName1;
-    $scope.memberName2;
-    $scope.memberName3;
-    $scope.memberName4;
-    $scope.changeId = function(jersey_no){
+    var res = $resource('/members/no/:jersey_no.json',
+                        {jersey_no: '@jersey_no'},
+                        {'query': { method:'GET'}});
+    $scope.memberNames = new Array();
+    $scope.memberIds = new Array();
+    $scope.changeId = function(val, idx){
+        $scope.memberIds[idx] = '';
+        $scope.memberNames[idx] = '';
         //JSON取得
-//        $scope.memberName = res.query();
-        $scope.memberName0 = jersey_no;
+        $scope.members = res.query({jersey_no:val});
+        $scope.members.$promise.then(function(data){
+            console.log(data.member_name);
+            $scope.memberIds[idx] = data.id;
+            $scope.memberNames[idx] = data.member_name;
+        });
     };
 };
 

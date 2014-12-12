@@ -325,11 +325,11 @@
                       <%= text_field_tag 'goal_jersey_no[]', '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
                                           'ng-model'=>'goalJerseyNo' + goal_no.to_s,
-                                          'ng-change' => 'changeId('+goal_no.to_s+')'} %>
-                      <%= text_field_tag 'goal_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                                          'ng-change' => 'changeId(goalJerseyNo'+goal_no.to_s+','+goal_no.to_s+')'} %>
+                      <input type="hidden" name="goal_member_id[]" value="{{memberIds[<%= goal_no.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span>{{memberName<%= goal_no%>}}</span></td>
+                    <td><span>{{memberNames[<%= goal_no.to_s%>]}}</span></td>
                     <!--A-->
                     <td style="text-align: center">
                       <%= text_field_tag 'assist1_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
