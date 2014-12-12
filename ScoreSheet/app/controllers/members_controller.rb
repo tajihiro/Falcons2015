@@ -15,7 +15,7 @@ class MembersController < ApplicationController
   # GET /members/no/1
   # GET /members/no/1.json
   def show_jersey_no
-    @member = Member.where(jersey_number: params[:jersey_number]).last
+    @member = Member.season_member(params[:season_id],params[:jersey_number])
   end
 
   # GET /members/new

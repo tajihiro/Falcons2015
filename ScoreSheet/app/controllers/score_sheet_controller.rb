@@ -41,10 +41,10 @@ class ScoreSheetController < ApplicationController
     @game = Game.new
     #初期値設定
     @game.season_id = season_id
-    @game.team_id = 1
-    @game.game_place = 'MiSC'
-    @game.division_id = 4
-    @game.game_type_id = 2
+    @game.team_id = 1 #Falcons
+    @game.game_place = 'MiSC' #MiSC
+    @game.division_id = 4 #Bronze
+    @game.game_type_id = 1 #Season
 
     #Season情報取得
     @season = Season.selected_season(@game.season_id)

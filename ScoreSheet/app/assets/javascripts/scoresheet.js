@@ -9,12 +9,63 @@ var NewScoresheetController = function($window, $scope, $location){
         //$window.location.href = location.path();
     };
 };
+
+//
+//RosterGoalieList
+//
+var GoalieListController = function($resource, $scope){
+    var res = $resource('/season/:season_id/members/no/:jersey_no.json',
+        {season_id: '@season_id', jersey_no: '@jersey_no'},
+        {'query': { method:'GET'}});
+    $scope.memberIds = new Array();
+    $scope.rosterMemberNames = new Array();
+    //Member
+    $scope.changeRoster = function(season_id, jersey_no, idx){
+        $scope.memberIds[idx] = '';
+        $scope.rosterMemberNames[idx] = '';
+        //JSON取得
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members.$promise.then(function(data){
+            console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
+            $scope.memberIds[idx] = data.id;
+            $scope.rosterMemberNames[idx] = data.member_names;
+        });
+    };
+};
+
+//
+//RosterPlayerList
+//
+var PlayerListController = function($resource, $scope){
+    //var res = $resource('/members/no/:jersey_no.json',
+    var res = $resource('/season/:season_id/members/no/:jersey_no.json',
+        {season_id: '@season_id', jersey_no: '@jersey_no'},
+        {'query': { method:'GET'}});
+    $scope.memberIds = new Array();
+    $scope.rosterMemberNames = new Array();
+    $scope.rosterPostionNames = new Array();
+    //Member
+    $scope.changeRoster = function(season_id, jersey_no, idx){
+        $scope.memberIds[idx] = '';
+        $scope.rosterMemberNames[idx] = '';
+        $scope.rosterPostionNames[idx] = '';
+        //JSON取得
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members.$promise.then(function(data){
+            console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
+            $scope.memberIds[idx] = data.id;
+            $scope.rosterMemberNames[idx] = data.member_names;
+            $scope.rosterPostionNames[idx] = data.position_name;
+        });
+    };
+};
+
 //
 //GoalList
 //
 var GoalListController = function($resource, $scope){
-    var res = $resource('/members/no/:jersey_no.json',
-                        {jersey_no: '@jersey_no'},
+    var res = $resource('/season/:season_id/members/no/:jersey_no.json',
+                        {season_id: '@season_id', jersey_no: '@jersey_no'},
                         {'query': { method:'GET'}});
     $scope.goalMemberIds = new Array();
     $scope.goalMemberNames = new Array();
@@ -23,39 +74,39 @@ var GoalListController = function($resource, $scope){
     $scope.assist2MemberIds = new Array();
     $scope.assist2MemberNames = new Array();
     //Goal Member
-    $scope.changeGoal = function(val, idx){
+    $scope.changeGoal = function(season_id, jersey_no, idx){
         $scope.goalMemberIds[idx] = '';
         $scope.goalMemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({jersey_no:val});
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
-            console.log(data.member_name);
+            console.log(data.member_names);
             $scope.goalMemberIds[idx] = data.id;
-            $scope.goalMemberNames[idx] = data.member_name;
+            $scope.goalMemberNames[idx] = data.member_names;
         });
     };
     //Assist1 Member
-    $scope.changeAssist1 = function(val, idx){
+    $scope.changeAssist1 = function(season_id, jersey_no, idx){
         $scope.assist1MemberIds[idx] = '';
         $scope.assist1MemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({jersey_no:val});
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
-            console.log(data.member_name);
+            console.log(data.member_names);
             $scope.assist1MemberIds[idx] = data.id;
-            $scope.assist1MemberNames[idx] = data.member_name;
+            $scope.assist1MemberNames[idx] = data.member_names;
         });
     };
     //Assist2 Member
-    $scope.changeAssist2 = function(val, idx){
+    $scope.changeAssist2 = function(season_id, jersey_no, idx){
         $scope.assist2MemberIds[idx] = '';
         $scope.assist2MemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({jersey_no:val});
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
-            console.log(data.member_name);
+            console.log(data.member_names);
             $scope.assist2MemberIds[idx] = data.id;
-            $scope.assist2MemberNames[idx] = data.member_name;
+            $scope.assist2MemberNames[idx] = data.member_names;
         });
     };
 };
@@ -64,29 +115,22 @@ var GoalListController = function($resource, $scope){
 // PenaltyList
 //
 var PenaltyListController = function($resource, $scope){
-    var resMember = $resource('/members/no/:jersey_no.json',
-        {jersey_no: '@jersey_no'},
-        {'query': { method:'GET'}});
+    var res = $resource('/season/:season_id/members/no/:jersey_no.json',
+                        {season_id: '@season_id', jersey_no: '@jersey_no'},
+                        {'query': { method:'GET'}});
     $scope.penaltyMemberIds = new Array();
     $scope.penaltyMemberNames = new Array();
     //Get Penalty Member
-    $scope.changePenalty = function(val, idx){
+    $scope.changePenalty = function(season_id, jersey_no, idx){
         $scope.penaltyMemberIds[idx] = '';
         $scope.penaltyMemberNames[idx] = '';
         //JSON取得
-        $scope.members = resMember.query({jersey_no:val});
+        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
-            console.log(data.member_name);
+            console.log(data.member_names);
             $scope.penaltyMemberIds[idx] = data.id;
-            $scope.penaltyMemberNames[idx] = data.member_name;
+            $scope.penaltyMemberNames[idx] = data.member_names;
         });
-    };
-    //Get Penalty
-    var resPenalty = $resource('/penalty/:query.json',
-        {penalty_name: '@penalty_name'},
-        {'query': { method:'GET'}});
-    $scope.getPenalty = function(name){
-        console.log("JOSN取得"+name);
     };
 };
 
@@ -103,5 +147,7 @@ scoresheetApp.config(['$resourceProvider', function($resourceProvider){
 /* Applicationにコントローラ設定
  */
 scoresheetApp.controller('newScoresheetController', ['$window','$scope','$location', NewScoresheetController]);
+scoresheetApp.controller('goalieListController', GoalieListController);
+scoresheetApp.controller('playerListController', PlayerListController);
 scoresheetApp.controller('goalListController', GoalListController);
 scoresheetApp.controller('penaltyListController', PenaltyListController);

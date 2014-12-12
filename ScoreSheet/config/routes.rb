@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :seasons
   resources :games
   resources :members
-  get 'members/no/:jersey_number' => 'members#show_jersey_no'
+  get '/season/:season_id/members/no/:jersey_number' => 'members#show_jersey_no'
+  # get 'members/no/:jersey_number' => 'members#show_jersey_no'
 
   # resources :seasons do
   #   resources :games
