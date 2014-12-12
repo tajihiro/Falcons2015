@@ -306,42 +306,50 @@
                 <th style="text-align: center">Name</th>
               </tr>
               </thead>
-              <tbody ng-controller='memberListController'>
-              <% @goals.each_with_index do |goal, goal_no| %>
+              <tbody ng-controller='goalListController'>
+              <% @goals.each_with_index do |goal, idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= hidden_field_tag 'goal_no[]', goal_no %>
-                      <%= text_field_tag 'goal_period[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'goal_no[]', idx %>
+                      <%= text_field_tag 'goal_period[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag 'goal_min[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_min[]', '00', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                       :
-                      <%= text_field_tag 'goal_sec[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_sec[]', '00', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--G-->
                     <td style="text-align: center">
                       <%= text_field_tag 'goal_jersey_no[]', '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
-                                          'ng-model'=>'goalJerseyNo' + goal_no.to_s,
-                                          'ng-change' => 'changeId(goalJerseyNo'+goal_no.to_s+','+goal_no.to_s+')'} %>
-                      <input type="hidden" name="goal_member_id[]" value="{{memberIds[<%= goal_no.to_s%>]}}">
+                                          'ng-model'=>'goalJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeGoal(goalJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="goal_member_id[]" value="{{goalMemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span>{{memberNames[<%= goal_no.to_s%>]}}</span></td>
-                    <!--A-->
+                    <td><span>{{goalMemberNames[<%= idx.to_s%>]}}</span></td>
+                    <!--A1-->
                     <td style="text-align: center">
-                      <%= text_field_tag 'assist1_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist1_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'assist1JerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeAssist1(assist1JerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="assist1_member_id[]" value="{{assist1MemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
-                    <!--A-->
+                    <td><span>{{assist1MemberNames[<%= idx.to_s%>]}}</span></td>
+                    <!--A2-->
                     <td style="text-align: center">
-                      <%= text_field_tag 'assist2_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist2_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'assist2JerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeAssist2(assist2JerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="assist2_member_id[]" value="{{assist2MemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
+                    <td><span>{{assist2MemberNames[<%= idx.to_s%>]}}</span></td>
                   </tr>
               <% end %>
               </tbody>
@@ -369,20 +377,24 @@
                 <th style="text-align: center">Penalty</th>
               </tr>
               </thead>
-              <tbody>
-              <% @game_panalties.each_with_index do |penalty, penalty_no| %>
+              <tbody ng-controller='penaltyListController'>
+              <% @game_panalties.each_with_index do |penalty, idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= hidden_field_tag 'penalty_no[]', penalty_no %>
-                      <%= text_field_tag 'penalty_period[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'penalty_no[]', idx %>
+                      <%= text_field_tag 'penalty_period[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!--#-->
                     <td style="text-align: center">
-                      <%= text_field_tag 'penalty_member_id[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'penaltyJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changePenalty(penaltyJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="penalty_member_id[]" value="{{penaltyMemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
+                    <td><span>{{penaltyMemberNames[<%= idx.to_s%>]}}</span></td>
                     <!--Time-->
                     <td style="text-align: right">
                       <%= text_field_tag 'penalty_min[]', 0, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
