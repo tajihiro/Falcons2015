@@ -5,6 +5,8 @@ var ScoreSheetController = function($window, $scope, $location){
     $scope.msg = "こんにちは。";
 
     $scope.selectedSeasonId;
+    $scope.homeTeamId;
+    $scope.awayTeamId;
 
     //HomeTeam
     $scope.homeTeamP1Score = 0;
@@ -46,6 +48,7 @@ var ScoreSheetController = function($window, $scope, $location){
         //$location.search('season_id','28');
         //$window.location.href = location.path();
     };
+
 };
 
 //
@@ -76,10 +79,19 @@ var GoalieListController = function($resource, $scope){
             console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
             $scope.memberIds[idx] = data.id;
             $scope.rosterMemberNames[idx] = data.member_names;
-
-            var teamScore = Number($scope.homeTeamScore);
-            var teamShots = Number($scope.homeTeamShots);
-
+            //GoalieScore算出
+            var teamScore = 0;
+            var teamShots = 0;
+            if($scope.homeTeamId == 1){
+                teamScore = Number($scope.awayTeamScore);
+                teamShots = Number($scope.awayTeamShots);
+            }else if($scope.awayTeamId == 1){
+                teamScore = Number($scope.homeTeamScore);
+                teamShots = Number($scope.homeTeamShots);
+            }else{
+                teamScore = 0;
+                teamShots = 0;
+            }
             $scope.goalAgainsts[idx] = teamScore;
             $scope.shotsOnGoals[idx] = teamShots;
             $scope.shotsAgainsts[idx] = teamShots - teamScore;
