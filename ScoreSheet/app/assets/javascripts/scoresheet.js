@@ -1,11 +1,12 @@
 /*
 /* コントローラ定義
  */
-var NewScoresheetController = function($window, $scope, $location){
+var ScoreSheetController = function($window, $scope, $location){
     $scope.msg = "こんにちは。";
-    $scope.seasonChange = function(){
-        $location.search('season_id','28');
-
+    $scope.selectedSeasonId;
+    $scope.changeSeason = function(selectedSeasonId){
+        console.log(selectedSeasonId);
+        //$location.search('season_id','28');
         //$window.location.href = location.path();
     };
 };
@@ -20,11 +21,12 @@ var GoalieListController = function($resource, $scope){
     $scope.memberIds = new Array();
     $scope.rosterMemberNames = new Array();
     //Member
-    $scope.changeRoster = function(season_id, jersey_no, idx){
+    $scope.changeRoster = function(jersey_no, idx){
         $scope.memberIds[idx] = '';
         $scope.rosterMemberNames[idx] = '';
+        console.log("SEASON_ID:" + $scope.selectedSeasonId);
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
             $scope.memberIds[idx] = data.id;
@@ -45,12 +47,12 @@ var PlayerListController = function($resource, $scope){
     $scope.rosterMemberNames = new Array();
     $scope.rosterPostionNames = new Array();
     //Member
-    $scope.changeRoster = function(season_id, jersey_no, idx){
+    $scope.changeRoster = function(jersey_no, idx){
         $scope.memberIds[idx] = '';
         $scope.rosterMemberNames[idx] = '';
         $scope.rosterPostionNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
             $scope.memberIds[idx] = data.id;
@@ -74,11 +76,11 @@ var GoalListController = function($resource, $scope){
     $scope.assist2MemberIds = new Array();
     $scope.assist2MemberNames = new Array();
     //Goal Member
-    $scope.changeGoal = function(season_id, jersey_no, idx){
+    $scope.changeGoal = function(jersey_no, idx){
         $scope.goalMemberIds[idx] = '';
         $scope.goalMemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names);
             $scope.goalMemberIds[idx] = data.id;
@@ -86,11 +88,11 @@ var GoalListController = function($resource, $scope){
         });
     };
     //Assist1 Member
-    $scope.changeAssist1 = function(season_id, jersey_no, idx){
+    $scope.changeAssist1 = function(jersey_no, idx){
         $scope.assist1MemberIds[idx] = '';
         $scope.assist1MemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names);
             $scope.assist1MemberIds[idx] = data.id;
@@ -98,11 +100,11 @@ var GoalListController = function($resource, $scope){
         });
     };
     //Assist2 Member
-    $scope.changeAssist2 = function(season_id, jersey_no, idx){
+    $scope.changeAssist2 = function(jersey_no, idx){
         $scope.assist2MemberIds[idx] = '';
         $scope.assist2MemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names);
             $scope.assist2MemberIds[idx] = data.id;
@@ -121,11 +123,11 @@ var PenaltyListController = function($resource, $scope){
     $scope.penaltyMemberIds = new Array();
     $scope.penaltyMemberNames = new Array();
     //Get Penalty Member
-    $scope.changePenalty = function(season_id, jersey_no, idx){
+    $scope.changePenalty = function(jersey_no, idx){
         $scope.penaltyMemberIds[idx] = '';
         $scope.penaltyMemberNames[idx] = '';
         //JSON取得
-        $scope.members = res.query({season_id:season_id, jersey_no:jersey_no});
+        $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names);
             $scope.penaltyMemberIds[idx] = data.id;
@@ -146,7 +148,7 @@ scoresheetApp.config(['$resourceProvider', function($resourceProvider){
 /*
 /* Applicationにコントローラ設定
  */
-scoresheetApp.controller('newScoresheetController', ['$window','$scope','$location', NewScoresheetController]);
+scoresheetApp.controller('scoreSheetController', ['$window','$scope','$location', ScoreSheetController]);
 scoresheetApp.controller('goalieListController', GoalieListController);
 scoresheetApp.controller('playerListController', PlayerListController);
 scoresheetApp.controller('goalListController', GoalListController);
