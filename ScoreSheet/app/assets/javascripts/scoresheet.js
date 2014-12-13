@@ -3,7 +3,44 @@
  */
 var ScoreSheetController = function($window, $scope, $location){
     $scope.msg = "こんにちは。";
+
     $scope.selectedSeasonId;
+
+    //HomeTeam
+    $scope.homeTeamP1Score = 0;
+    $scope.homeTeamP2Score = 0;
+    $scope.homeTeamOtScore = 0;
+    $scope.homeTeamScore = 0;
+
+    $scope.homeTeamP1Shots = 0;
+    $scope.homeTeamP2Shots = 0;
+    $scope.homeTeamOtShots = 0;
+    $scope.homeTeamShots = 0;
+
+    //AwayTeam
+    $scope.awayTeamP1Score = 0;
+    $scope.awayTeamP2Score = 0;
+    $scope.awayTeamOtScore = 0;
+    $scope.awayTeamScore = 0;
+
+    $scope.awayTeamP1Shots = 0;
+    $scope.awayTeamP2Shots = 0;
+    $scope.awayTeamOtShots = 0;
+    $scope.awayTeamShots = 0;
+
+    $scope.changeHomeScore = function () {
+        $scope.homeTeamScore = Number($scope.homeTeamP1Score) + Number($scope.homeTeamP2Score) + Number($scope.homeTeamOtScore);
+    };
+    $scope.changeHomeShots = function () {
+        $scope.homeTeamShots = Number($scope.homeTeamP1Shots) + Number($scope.homeTeamP2Shots) + Number($scope.homeTeamOtShots);
+    };
+    $scope.changeAwayScore = function () {
+        $scope.awayTeamScore = Number($scope.awayTeamP1Score) + Number($scope.awayTeamP2Score) + Number($scope.awayTeamOtScore);
+    };
+    $scope.changeAwayShots = function () {
+        $scope.awayTeamShots = Number($scope.awayTeamP1Shots) + Number($scope.awayTeamP2Shots) + Number($scope.awayTeamOtShots);
+    };
+
     $scope.changeSeason = function(selectedSeasonId){
         console.log(selectedSeasonId);
         //$location.search('season_id','28');
@@ -20,17 +57,32 @@ var GoalieListController = function($resource, $scope){
         {'query': { method:'GET'}});
     $scope.memberIds = new Array();
     $scope.rosterMemberNames = new Array();
+    $scope.goalAgainsts = new Array();
+    $scope.shotsOnGoals = new Array();
+    $scope.shotsAgainsts = new Array();
     //Member
     $scope.changeRoster = function(jersey_no, idx){
         $scope.memberIds[idx] = '';
         $scope.rosterMemberNames[idx] = '';
         console.log("SEASON_ID:" + $scope.selectedSeasonId);
+        //Goalie Score取得
+        $scope.goalAgainsts[idx] = 0;
+        $scope.shotsOnGoals[idx] = 0;
+        $scope.shotsAgainsts[idx] = 0;
+
         //JSON取得
         $scope.members = res.query({season_id:$scope.selectedSeasonId, jersey_no:jersey_no});
         $scope.members.$promise.then(function(data){
             console.log(data.member_names + ' / ' + data.id + ' / ' + data.position_name);
             $scope.memberIds[idx] = data.id;
             $scope.rosterMemberNames[idx] = data.member_names;
+
+            var teamScore = Number($scope.homeTeamScore);
+            var teamShots = Number($scope.homeTeamShots);
+
+            $scope.goalAgainsts[idx] = teamScore;
+            $scope.shotsOnGoals[idx] = teamShots;
+            $scope.shotsAgainsts[idx] = teamShots - teamScore;
         });
     };
 };
