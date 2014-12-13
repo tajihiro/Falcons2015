@@ -26,7 +26,7 @@
         New Game
         <%= select_tag 'season_id',
                        options_from_collection_for_select(@seasons, :id, :season_name),
-                       {include_blank:true, 'ng-model'=>'selectedSeasonId', 'ng-change'=>'changeSeason(selectedSeasonId)'} %>
+                       {'ng-model'=>'selectedSeasonId', 'ng-change'=>'changeSeason(selectedSeasonId)'} %>
         <%= f.text_field :game_name %></h4>
 
       <div>
@@ -213,7 +213,9 @@
                     </td>
                     <!-- MVP -->
                     <td style="text-align: center">
-                      <span><%= check_box_tag :mvp_flg, 0 %></span>
+                      <span>
+                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                      </span>
                     </td>
                   </tr>
               <% end %>
@@ -269,7 +271,9 @@
                     </td>
                     <!-- MVP -->
                     <td style="text-align: center">
-                      <span><%= check_box_tag :mvp_flg, 0 %></span>
+                      <span>
+                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                      </span>
                     </td>
                   </tr>
               <% end %>

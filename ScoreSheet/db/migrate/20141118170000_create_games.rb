@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.references :season, :null => false
       t.references :division, :null => false
       t.references :team, :null => false
-      t.references :game_type, :null => false
+      t.references :game_type, :null => false, :default => 1
       t.string :game_name, :limit => 60, :null => false
       t.integer :home_team_id, :null => false
       t.integer :home_team_p1_score, :null => false, :default => 0

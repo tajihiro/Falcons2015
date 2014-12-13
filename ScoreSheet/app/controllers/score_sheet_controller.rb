@@ -108,6 +108,8 @@ class ScoreSheetController < ApplicationController
     #パラメータ取得
     #Game
     @game = Game.new(game_params)
+    @game.season_id = params[:season_id]
+    @game.game_type_id = params[:game_type_id]
     #GameMembers
     member_ids = params[:member_id]
     goals = params[:goal]
@@ -118,7 +120,6 @@ class ScoreSheetController < ApplicationController
     shots_againsts = params[:shots_against]
     goalie_flgs = params[:goalie_flg]
     mvp_flgs = params[:mvp_flg]
-    join_flgs = params[:join_flg]
     #Goals
     goal_nos = params[:goal_no]
     goal_periods = params[:goal_period]
@@ -143,23 +144,21 @@ class ScoreSheetController < ApplicationController
           if @game.save then
           #GameMember登録
           member_ids.each_with_index do |member_id, i|
-            if !join_flgs.nil? then
-              if join_flgs.key?(member_id) then
-                @game_member = GameMember.new
-                @game_member.game_id = @game.id
-                @game_member.member_id = member_ids[i]
-                @game_member.goal = goals[i]
-                @game_member.assist = assists[i]
-                @game_member.goal_against = goal_againsts[i]
-                #@game_member.shots_on_goal = shots_on_goals[i]
-                @game_member.shots_against = shots_againsts[i]
-                @game_member.penalties = penalties[i]
-                @game_member.goalie_flg = goalie_flgs[i].nil? ? 0 : 1
-                if !mvp_flgs.nil? then
-                  @game_member.mvp_flg = (mvp_flgs.key?(member_id) ? 1 : 0)
-                end
-                @game_member.save
+            if member_id.present?
+              @game_member = GameMember.new
+              @game_member.game_id = @game.id
+              @game_member.member_id = member_ids[i]
+              @game_member.goal = goals[i]
+              @game_member.assist = assists[i]
+              @game_member.goal_against = goal_againsts[i]
+              #@game_member.shots_on_goal = shots_on_goals[i]
+              @game_member.shots_against = shots_againsts[i]
+              @game_member.penalties = penalties[i]
+              @game_member.goalie_flg = goalie_flgs[i]
+              unless mvp_flgs.nil?
+                @game_member.mvp_flg = (mvp_flgs.key?(member_ids[i]) ? 1 : 0)
               end
+              @game_member.save
             end
           end
           #Goals登録
