@@ -13,7 +13,6 @@ class Game < ActiveRecord::Base
   has_many :goals
   has_many :penalties, through:'game_penalties'
 
-
   #Method
   def self.selected_game(season_id, id)
     if season_id.nil? && id.nil?
@@ -31,5 +30,15 @@ class Game < ActiveRecord::Base
   def self.games_navi(season_id)
     where(season_id:season_id).order(:game_date,:game_time)
   end
+
+  #Validation
+  validates :season_id, presence: {message:'は必須です。'}
+  validates :division_id, presence: {message:'は必須です。'}
+  validates :team_id, presence: {message:'は必須です。'}
+  validates :game_type_id, presence: {message:'は必須です。'}
+  validates :game_name, presence: {message:'は必須です。'}
+  validates :game_date, presence: {message:'は必須です。'}
+  validates :home_team_id, presence: {message:'は必須です。'}
+  validates :away_team_id, presence: {message:'は必須です。'}
 
 end

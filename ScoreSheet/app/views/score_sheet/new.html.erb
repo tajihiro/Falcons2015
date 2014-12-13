@@ -5,7 +5,10 @@
 <p></p>
 
 <div ng-controller="scoreSheetController">
-  {{msg}}
+  <!-- Result Message -->
+  <h2 id="notice" style="color: green;"><%= notice %></h2>
+  <!--// Result Message -->
+
   <%= form_for @game, url: {action: 'create'} do |f| %>
       <%= f.hidden_field :team_id %>
       <div style="text-align: right">

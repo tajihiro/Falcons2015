@@ -189,7 +189,9 @@ class ScoreSheetController < ApplicationController
               @penalty.save
             end
           end
-          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: 'Game was successfully created.' }
+          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
+        else
+          format.html { redirect_to score_sheet_new_path, notice: '登録に失敗しました。' }
         end
       end
     end
