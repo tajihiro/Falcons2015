@@ -1,6 +1,6 @@
 class GameMember < ActiveRecord::Base
   #Association
-  belongs_to :game
+  belongs_to :games
   belongs_to :member
 
   def self.game_goalies(game_id)

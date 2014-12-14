@@ -118,8 +118,8 @@ class ScoreSheetController < ApplicationController
     assists = params[:assist]
     penalties = params[:penalties]
     goal_againsts = params[:goal_against]
-    shots_on_goals = params[:shots_on_goal]
     shots_againsts = params[:shots_against]
+    shots_on_goals = params[:shots_on_goal]
     goalie_flgs = params[:goalie_flg]
     mvp_flgs = params[:mvp_flg]
     #Goals
@@ -153,8 +153,8 @@ class ScoreSheetController < ApplicationController
               @game_member.goal = goals[i]
               @game_member.assist = assists[i]
               @game_member.goal_against = goal_againsts[i]
-              #@game_member.shots_on_goal = shots_on_goals[i]
               @game_member.shots_against = shots_againsts[i]
+              @game_member.shots_on_goal = shots_on_goals[i]
               @game_member.penalties = penalties[i]
               @game_member.goalie_flg = goalie_flgs[i]
               unless mvp_flgs.nil?

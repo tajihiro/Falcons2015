@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(version: 20141118170000) do
 
   create_table "game_members", id: false, force: true do |t|
     t.integer  "game_id",                                null: false
-    t.integer  "member_id",                              null: false
+    t.integer  "members_id",                             null: false
     t.integer  "goal",                     default: 0,   null: false
     t.integer  "assist",                   default: 0,   null: false
     t.integer  "goal_against",             default: 0,   null: false
     t.integer  "shots_against",            default: 0,   null: false
+    t.integer  "shots_on_goal",            default: 0,   null: false
     t.float    "penalties",     limit: 24, default: 0.0, null: false
     t.integer  "goalie_flg",               default: 0,   null: false
     t.integer  "mvp_flg",                  default: 0,   null: false
@@ -35,13 +36,13 @@ ActiveRecord::Schema.define(version: 20141118170000) do
   end
 
   create_table "game_penalties", force: true do |t|
-    t.integer  "game_id",                       null: false
-    t.integer  "penalty_id",                    null: false
-    t.integer  "period",            default: 1, null: false
-    t.integer  "penalty_min",                   null: false
-    t.integer  "penalty_sec",                   null: false
-    t.integer  "penalty_time",                  null: false
-    t.integer  "penalty_member_id"
+    t.integer  "game_id",                                    null: false
+    t.integer  "penalty_id",                                 null: false
+    t.integer  "period",                       default: 1,   null: false
+    t.integer  "penalty_min",                                null: false
+    t.integer  "penalty_sec",                                null: false
+    t.float    "penalty_time",      limit: 24, default: 0.0, null: false
+    t.integer  "penalty_member_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
