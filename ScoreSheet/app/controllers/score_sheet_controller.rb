@@ -109,6 +109,8 @@ class ScoreSheetController < ApplicationController
     #Game
     @game = Game.new(game_params)
     @game.season_id = params[:season_id]
+    @game.home_team_id = params[:home_team_id]
+    @game.away_team_id = params[:away_team_id]
     @game.game_type_id = params[:game_type_id]
     #GameMembers
     member_ids = params[:member_id]

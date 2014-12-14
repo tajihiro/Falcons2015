@@ -42,13 +42,11 @@ var ScoreSheetController = function($window, $scope, $location){
     $scope.changeAwayShots = function () {
         $scope.awayTeamShots = Number($scope.awayTeamP1Shots) + Number($scope.awayTeamP2Shots) + Number($scope.awayTeamOtShots);
     };
-
-    $scope.changeSeason = function(selectedSeasonId){
-        console.log(selectedSeasonId);
-        //$location.search('season_id','28');
-        //$window.location.href = location.path();
-    };
-
+    //$scope.changeSeason = function(selectedSeasonId){
+    //    console.log(selectedSeasonId);
+    //    //$location.search('season_id','28');
+    //    //$window.location.href = location.path();
+    //};
 };
 
 //
