@@ -9,7 +9,7 @@
 
 <!-- Game Table-->
 <div style="text-align: right">
-  <%= link_to score_sheet_edit_path(season_id:@game.season_id, game_id:@game.id) do%>
+  <%= link_to score_sheet_edit_path(id:@game.id) do%>
       <span class="label label-primary">
             <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
       </span>
@@ -22,7 +22,7 @@
   <% end %>
 </div>
 
-<h4>Game <%= @game.game_name %></h4>
+<h4><%= @game.season.season_name %> Game <%= @game.game_name %></h4>
 
 <div>
     <div class="row">

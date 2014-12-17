@@ -4,9 +4,12 @@
 
 <p></p>
 
-<div ng-controller="newScoresheetController">
-  {{msg}}
-  <%= form_for @game, url: {action: 'create'} do |f| %>
+<div ng-controller="scoreSheetController">
+  <!-- Result Message -->
+  <h2 id="notice" style="color: green;"><%= notice %></h2>
+  <!--// Result Message -->
+
+  <%= form_for @game, url: {action: 'update'} do |f| %>
       <%= f.hidden_field :team_id %>
       <div style="text-align: right">
         <%= link_to score_sheet_edit_path(season_id: @game.season_id, game_id: @game.id) do %>
@@ -23,9 +26,13 @@
       </div>
       <!-- Game Table-->
       <h4>
-        Edit Game
-        <%= f.collection_select :season_id, @seasons, :id, :season_name %>
-        <%= f.text_field :game_name %></h4>
+        New Game
+        <%= select_tag 'season_id',
+                       options_from_collection_for_select(@seasons, :id, :season_name),
+                       {'ng-init'=>'selectedSeasonId=' + @game.season_id.to_s,
+                        'ng-model'=>'selectedSeasonId', 'ng-change'=>'changeSeason(selectedSeasonId)',
+                        'ng-required'=>'true'} %>
+        <%= f.text_field :game_name, {'ng-required'=>'true'}%></h4>
 
       <div>
         <div class="row">
@@ -38,7 +45,8 @@
                 <th colspan="3">Time :
                   <span><%= f.time_select :game_time, {:minute_step => 30, :time_separator => ""} %></span></th>
                 <th colspan="3">
-                  <%= f.collection_select(:game_type_id, @game_types, :id, :game_type) %>
+                  <%= select_tag 'game_type_id', options_from_collection_for_select(@game_types, :id, :game_type),
+                                 {include_blank:false} %>
                 </th>
                 <th colspan="4">Place : <%= f.text_field :game_place %></th>
               </tr>
@@ -69,82 +77,136 @@
                 <th style="text-align: center">Visitor</th>
                 <!--Away Team-->
                 <td colspan="2">
-                  <%= f.collection_select(:away_team_id, @season_teams, :team_id, :team_name) %>
+                  <%= select_tag 'away_team_id',
+                                 options_from_collection_for_select(@season_teams, :team_id, :team_name),
+                                 {'ng-init'=>'awayTeamId=' + @game.away_team_id.to_s,
+                                  'ng-model'=>'awayTeamId','ng-required'=>'true'} %>
                 </td>
                 <!--1-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_p1_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_p1_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamP1Score=' + @game.away_team_p1_score.to_s,
+                                    'ng-model'=>'awayTeamP1Score', 'ng-change'=>'changeAwayScore()'} %>
                 </td>
                 <!--2-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_p2_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_p2_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamP2Score=' + @game.away_team_p2_score.to_s,
+                                    'ng-change'=>'changeAwayScore()','ng-model'=>'awayTeamP2Score'} %>
                 </td>
                 <!--OT-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_ot_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_ot_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamOtScore=' + @game.away_team_ot_score.to_s,
+                                    'ng-change'=>'changeAwayScore()','ng-model'=>'awayTeamOtScore'} %>
                 </td>
                 <!--Total(P)-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamScore=' + @game.away_team_score.to_s,
+                                    'ng-model'=>'awayTeamScore'} %>
                 </td>
                 <!--SOG-->
                 <td style="text-align: center">-</td>
                 <!--1-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_p1_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_p1_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamP1Shots=' + @game.away_team_p1_shots.to_s,
+                                    'ng-change'=>'changeAwayShots()', 'ng-model'=>'awayTeamP1Shots'} %>
                 </td>
                 <!--2-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_p2_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_p2_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamP2Shots=' + @game.away_team_p2_shots.to_s,
+                                    'ng-change'=>'changeAwayShots()', 'ng-model'=>'awayTeamP2Shots'} %>
                 </td>
                 <!--OT-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_ot_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_ot_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamOtShots=' + @game.away_team_ot_shots.to_s,
+                                    'ng-change'=>'changeAwayShots()', 'ng-model'=>'awayTeamOtShots'} %>
                 </td>
                 <!--Total(S)-->
                 <td style="text-align: right">
-                  <%= f.text_field :away_team_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :away_team_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'awayTeamShots=' + @game.away_team_shots.to_s,
+                                    'ng-model'=>'awayTeamShots'} %>
                 </td>
               </tr>
               <tr>
                 <th style="text-align: center">Home</th>
                 <!--Home Team-->
                 <td colspan="2">
-                  <%= f.collection_select(:home_team_id, @season_teams, :team_id, :team_name) %>
+                  <%= select_tag 'home_team_id',
+                                 options_from_collection_for_select(@season_teams, :team_id, :team_name),
+                                 {'ng-init'=>'homeTeamId=' + @game.home_team_id.to_s,
+                                  'ng-model'=>'homeTeamId','ng-required'=>'true'} %>
                 </td>
                 <!--1-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_p1_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_p1_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamP1Score=' + @game.home_team_p1_score.to_s,
+                                    'ng-change'=>'changeHomeScore()', 'ng-model'=>'homeTeamP1Score'} %>
                 </td>
                 <!--2-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_p2_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_p2_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamP2Score=' + @game.home_team_p2_score.to_s,
+                                    'ng-change'=>'changeHomeScore()','ng-model'=>'homeTeamP2Score'} %>
                 </td>
                 <!--OT-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_ot_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_ot_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamOtScore=' + @game.home_team_ot_score.to_s,
+                                    'ng-change'=>'changeHomeScore()','ng-model'=>'homeTeamOtScore'} %>
                 </td>
                 <!--Total(P)-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_score, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_score,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamScore=' + @game.home_team_score.to_s,
+                                    'ng-model'=>'homeTeamScore'} %>
                 </td>
                 <!--SOG-->
                 <td style="text-align: center">-</td>
                 <!--1-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_p1_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_p1_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamP1Shots=' + @game.home_team_p1_shots.to_s,
+                                    'ng-change'=>'changeHomeShots()','ng-model'=>'homeTeamP1Shots'} %>
                 </td>
                 <!--2-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_p2_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_p2_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamP2Shots=' + @game.home_team_p2_shots.to_s,
+                                    'ng-change'=>'changeHomeShots()','ng-model'=>'homeTeamP2Shots'} %>
                 </td>
                 <!--OT-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_ot_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_ot_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamOtShots=' + @game.home_team_ot_shots.to_s,
+                                    'ng-change'=>'changeHomeShots()','ng-model'=>'homeTeamOtShots'} %>
                 </td>
                 <!--Total-->
                 <td style="text-align: right">
-                  <%= f.text_field :home_team_shots, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                  <%= f.text_field :home_team_shots,
+                                   {size: 2, maxlength: 3, style: 'text-align:right;',
+                                    'ng-init'=>'homeTeamShots=' + @game.home_team_shots.to_s,
+                                    'ng-model'=>'homeTeamShots'} %>
                 </td>
               </tr>
               </tbody>
@@ -167,54 +229,53 @@
                 <th style="text-align: center">#</th>
                 <th style="text-align: center">Pos.</th>
                 <th style="text-align: center">Name</th>
-                <th style="text-align: center">出欠</th>
-                <th style="text-align: center">前半</th>
-                <th style="text-align: center">後半</th>
-                <th style="text-align: center">OT</th>
+                <th style="text-align: center">GA</th>
+                <th style="text-align: center">SOG</th>
+                <th style="text-align: center">Save</th>
                 <th style="text-align: center">MVP</th>
               </tr>
               </thead>
               <!--Goalie-->
-              <tbody>
-              <% @season_goalies.each do |goalie| %>
+              <tbody ng-controller='goalieListController'>
+              <% (0..1).each do |idx| %>
                   <tr>
                     <!-- # -->
                     <td style="text-align: center">
-                      <%= goalie.member.jersey_number %>
-                      <%= hidden_field_tag :member_id, goalie.member_id %>
+                      <%= text_field_tag 'roster_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'rosterJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
+                      <%= hidden_field_tag 'goalie_flg[]', 1 %>
+                      <%= hidden_field_tag 'goal[]', 0 %>
+                      <%= hidden_field_tag 'assist[]', 0 %>
+                      <%= hidden_field_tag 'penalties[]', 0 %>
                     </td>
                     <!-- Pos. -->
                     <td style="text-align: center">
-                      <%= goalie.member.position.position_name %>
+                      GK
                     </td>
                     <!-- Name -->
                     <td>
-                      <span><%= goalie.member.member_name %></span>
+                      <span>{{rosterMemberNames[<%= idx.to_s%>]}}</span>
                     </td>
-                    <!-- 出欠 -->
-                    <td style="text-align: center">
-                      <% join_flg = "join_flg[" + goalie.member.id.to_s + "]" %>
-                      <span><%= check_box_tag join_flg, 1 %></span>
-                    </td>
-                    <!-- 前半 -->
+                    <!-- GA -->
                     <td style="text-align: right">
-                      <%= text_field_tag :goal_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>/
-                      <%= text_field_tag :shots_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <input type="text" name="goal_against[]" value="{{goalAgainsts[<%= idx.to_s%>]}}" size="2" maxlength="3" style="text-align:right;">
                     </td>
-                    <!-- 後半 -->
+                    <!-- SOG -->
                     <td style="text-align: right">
-                      <%= text_field_tag :goal_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>/
-                      <%= text_field_tag :shots_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <input type="text" name="shots_on_goal[]" value="{{shotsOnGoals[<%= idx.to_s%>]}}" size="2" maxlength="3" style="text-align:right;">
                     </td>
-                    <!-- OT -->
+                    <!-- SAVE -->
                     <td style="text-align: right">
-                      <%= text_field_tag :goal_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>/
-                      <%= text_field_tag :shots_against, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <input type="text" name="shots_against[]" value="{{shotsAgainsts[<%= idx.to_s%>]}}" size="2" maxlength="3" style="text-align:right;">
                     </td>
                     <!-- MVP -->
                     <td style="text-align: center">
-                      <% mvp_flg = "mvp_flg[" + goalie.member.id.to_s + "]" %>
-                      <span><%= check_box_tag mvp_flg, 0 %></span>
+                      <span>
+                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                      </span>
                     </td>
                   </tr>
               <% end %>
@@ -227,50 +288,52 @@
                 <th style="text-align: center">#</th>
                 <th style="text-align: center">Pos.</th>
                 <th style="text-align: center">Name</th>
-                <th style="text-align: center">出欠</th>
                 <th style="text-align: center">G</th>
                 <th style="text-align: center">A</th>
                 <th style="text-align: center">P</th>
                 <th style="text-align: center">MVP</th>
               </tr>
               </thead>
-              <tbody>
-              <% @season_players.each do |player| %>
+              <tbody ng-controller='playerListController'>
+              <% (2..16).each do |idx| %>
                   <tr>
                     <!-- # -->
                     <td style="text-align: center">
-                      <%= player.member.jersey_number %>
-                      <%= hidden_field_tag :member_id, player.member_id %>
+                      <%= text_field_tag 'roster_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'rosterJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
+                      <%= hidden_field_tag 'goalie_flg[]', 0 %>
+                      <%= hidden_field_tag 'goal_against[]', 0 %>
+                      <%= hidden_field_tag 'shots_on_goal[]', 0 %>
+                      <%= hidden_field_tag 'shots_against[]', 0 %>
                     </td>
                     <!-- Pos. -->
                     <td style="text-align: center">
-                      <span><%= player.member.position.position_name %></span>
+                      <span>{{rosterPostionNames[<%= idx.to_s%>]}}</span>
                     </td>
                     <!-- Name -->
                     <td>
-                      <span><%= player.member.member_name %></span>
-                    </td>
-                    <!-- 出欠 -->
-                    <td style="text-align: center">
-                      <% join_flg = "join_flg[" + player.member.id.to_s + "]" %>
-                      <span><%= check_box_tag join_flg, 1 %></span>
+                      <span>{{rosterMemberNames[<%= idx.to_s%>]}}</span>
                     </td>
                     <!-- G -->
                     <td style="text-align: right">
-                      <%= text_field_tag :goal, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- A -->
                     <td style="text-align: right">
-                      <%= text_field_tag :assist, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- P -->
                     <td style="text-align: right">
-                      <%= text_field_tag :penalties, '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalties[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- MVP -->
                     <td style="text-align: center">
-                      <% mvp_flg = "mvp_flg[" + player.member.id.to_s + "]" %>
-                      <span><%= check_box_tag mvp_flg, 0 %></span>
+                      <span>
+                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                      </span>
                     </td>
                   </tr>
               <% end %>
@@ -293,45 +356,58 @@
               <tr>
                 <th style="text-align: center">Half</th>
                 <th style="text-align: center">Time</th>
-                <th style="text-align: center">G</th>
+                <th style="text-align: center">G#</th>
                 <th style="text-align: center">Name</th>
-                <th style="text-align: center">A</th>
+                <th style="text-align: center">A#</th>
                 <th style="text-align: center">Name</th>
-                <th style="text-align: center">A</th>
+                <th style="text-align: center">A#</th>
                 <th style="text-align: center">Name</th>
               </tr>
               </thead>
-              <tbody>
-              <% @goals.each do |goal| %>
+              <tbody ng-controller='goalListController'>
+              <% @goals.each_with_index do |goal, idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= text_field_tag :period, goal.period, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'goal_no[]', idx %>
+                      <%= text_field_tag 'goal_period[]', '', {size: 2, maxlength: 1, style: 'text-align:right;'} %>
                     </td>
                     <!--Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag :goal_min, goal.goal_min, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_min[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                       :
-                      <%= text_field_tag :goal_sec, goal.goal_sec, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_sec[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                     </td>
                     <!--G-->
                     <td style="text-align: center">
-                      <%= text_field_tag :goal_member_id, goal.goal_member_id, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'goalJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeGoal(goalJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="goal_member_id[]" value="{{goalMemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
-                    <!--A-->
+                    <td><span>{{goalMemberNames[<%= idx.to_s%>]}}</span></td>
+                    <!--A1-->
                     <td style="text-align: center">
-                      <%= text_field_tag :assist1_member_id, goal.assist1_member_id, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist1_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'assist1JerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeAssist1(assist1JerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="assist1_member_id[]" value="{{assist1MemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
-                    <!--A-->
+                    <td><span>{{assist1MemberNames[<%= idx.to_s%>]}}</span></td>
+                    <!--A2-->
                     <td style="text-align: center">
-                      <%= text_field_tag :assist2_member_id, goal.assist2_member_id, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist2_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'assist2JerseyNo' + idx.to_s,
+                                          'ng-change' => 'changeAssist2(assist2JerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="assist2_member_id[]" value="{{assist2MemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
+                    <td><span>{{assist2MemberNames[<%= idx.to_s%>]}}</span></td>
                   </tr>
               <% end %>
               </tbody>
@@ -359,32 +435,37 @@
                 <th style="text-align: center">Penalty</th>
               </tr>
               </thead>
-              <tbody>
-              <% @game_panalties.each do |penalty| %>
+              <tbody ng-controller='penaltyListController'>
+              <% @game_panalties.each_with_index do |penalty, idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
-                      <%= text_field_tag :period, penalty.period, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= hidden_field_tag 'penalty_no[]', idx %>
+                      <%= text_field_tag 'penalty_period[]', '', {size: 2, maxlength: 1, style: 'text-align:right;'} %>
                     </td>
                     <!--#-->
                     <td style="text-align: center">
-                      <%= text_field_tag :penalty_member_id, penalty.penalty_member_id, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_jersey_no[]', '',
+                                         {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-model'=>'penaltyJerseyNo' + idx.to_s,
+                                          'ng-change' => 'changePenalty(penaltyJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
+                      <input type="hidden" name="penalty_member_id[]" value="{{penaltyMemberIds[<%= idx.to_s%>]}}">
                     </td>
                     <!--Name-->
-                    <td><span></span></td>
+                    <td><span>{{penaltyMemberNames[<%= idx.to_s%>]}}</span></td>
                     <!--Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag :penalty_min, penalty.penalty_min, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_min[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                       :
-                      <%= text_field_tag :penalty_sec, penalty.penalty_sec, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_sec[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                     </td>
                     <!--P.Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag :penalty_time, penalty.penalty_time, {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_time[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                     </td>
                     <!--Penalty-->
                     <td>
-                      <%= text_field_tag :penalty_id, penalty.id %>
+                      <%= select_tag 'penalty_id[]', options_from_collection_for_select(@penalties, :id, :penalty_name), include_blank:true %>
                     </td>
                   </tr>
               <% end %>
@@ -394,19 +475,36 @@
         </div>
       </div>
       <!--// Penalty Table-->
+
       <!-- Comment-->
-      <div>
-        <%= f.text_area :comments %>
+      <h4>Comment</h4>
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <%= f.text_area :comments, {rows: 4, cols: 180}%>
+          </div>
+        </div>
       </div>
-      <div>
-        <%= f.text_field :movie_url %>
+
+      <h4>YouTube</h4>
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <%= f.text_field :movie_url, {size: 180, placeholder: 'http://'}%>
+          </div>
+        </div>
       </div>
       <!--// Comment-->
+      <p></p>
       <!-- Register Button-->
       <div>
-        <p style="text-align: center">
-          <%= f.submit '登録', class: 'btn btn-primary' %>
-        </p>
+        <div class="row">
+          <div class="col-md-12">
+            <p style="text-align: center">
+              <%= f.submit '更新', class: 'btn btn-primary' %>
+            </p>
+          </div>
+        </div>
       </div>
       <!-- Register Button-->
   <% end %>

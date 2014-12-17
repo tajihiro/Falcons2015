@@ -12,12 +12,6 @@
   <%= form_for @game, url: {action: 'create'} do |f| %>
       <%= f.hidden_field :team_id %>
       <div style="text-align: right">
-        <%= link_to score_sheet_edit_path(season_id: @game.season_id, game_id: @game.id) do %>
-      <span class="label label-primary">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
-      </span>
-        <% end %>
-        &nbsp;
         <%= link_to score_sheet_new_path(season_id: @game.season_id) do %>
       <span class="label label-success">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
@@ -29,7 +23,7 @@
         New Game
         <%= select_tag 'season_id',
                        options_from_collection_for_select(@seasons, :id, :season_name),
-                       {include_blank:false,
+                       {'ng-init'=>'selectedSeasonId=' + @game.season_id.to_s,
                         'ng-model'=>'selectedSeasonId', 'ng-change'=>'changeSeason(selectedSeasonId)', 'ng-required'=>'true'} %>
         <%= f.text_field :game_name, {'ng-required'=>'true'}%></h4>
 
@@ -78,7 +72,8 @@
                 <td colspan="2">
                   <%= select_tag 'away_team_id',
                                  options_from_collection_for_select(@season_teams, :team_id, :team_name),
-                                 {'ng-model'=>'awayTeamId','ng-required'=>'true'} %>
+                                 {'ng-init'=>'awayTeamId=1',
+                                  'ng-model'=>'awayTeamId','ng-required'=>'true'} %>
                 </td>
                 <!--1-->
                 <td style="text-align: right">
@@ -135,7 +130,8 @@
                 <td colspan="2">
                   <%= select_tag 'home_team_id',
                                  options_from_collection_for_select(@season_teams, :team_id, :team_name),
-                                 {'ng-model'=>'homeTeamId','ng-required'=>'true'} %>
+                                 {'ng-init'=>'homeTeamId=1',
+                                  'ng-model'=>'homeTeamId','ng-required'=>'true'} %>
                 </td>
                 <!--1-->
                 <td style="text-align: right">
@@ -458,7 +454,7 @@
       <div class="row">
         <div class="col-md-12">
           <div>
-            <%= f.text_area :comments %>
+            <%= f.text_area :comments, {rows: 4, cols: 180}%>
           </div>
         </div>
       </div>
@@ -467,7 +463,7 @@
       <div class="row">
         <div class="col-md-12">
           <div>
-            <%= f.text_field :movie_url, {size: 120, placeholder: 'http://'}%>
+            <%= f.text_field :movie_url, {size: 180, placeholder: 'http://'}%>
           </div>
         </div>
       </div>

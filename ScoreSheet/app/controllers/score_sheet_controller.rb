@@ -70,23 +70,21 @@ class ScoreSheetController < ApplicationController
   # 更新画面表示処理
   #
   def edit
-    season_id = params[:season_id]
-    game_id = params[:game_id]
-    season_id = params[:season_id]
-
-    #新規インスタンス取得
-    @game = Game.new
+    #登録済インスタンス取得
+    @game = Game.find(params[:id])
     #初期値設定
-    @game.game_place = 'MiSC'
-    @game.division_id = 4
-    @game.game_type_id = 2
+    # @game.season_id = season_id
+    # @game.team_id = 1 #Falcons
+    # @game.game_place = 'MiSC' #MiSC
+    # @game.division_id = 4 #Bronze
+    # @game.game_type_id = 1 #Season
 
-    #
+    #Season情報取得
     @season = Season.selected_season(@game.season_id)
     @season_goalies = SeasonMember.season_goalies(@season.id)
     @season_players = SeasonMember.season_players(@season.id)
 
-    #表示項目取得
+    #コンポーネント項目取得
     @seasons = Season.all.order('id DESC')
     @game_types = GameType.all
     @divisions = Division.all
