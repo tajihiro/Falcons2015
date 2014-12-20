@@ -191,7 +191,7 @@ class ScoreSheetController < ApplicationController
           end
           format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
         else
-          format.html { redirect_to score_sheet_new_path, notice: '登録に失敗しました。' }
+          format.html { redirect_to :back, notice: '登録に失敗しました。' }
         end
       end
     end
@@ -203,14 +203,23 @@ class ScoreSheetController < ApplicationController
   #
   def update
     #パラメータ取得
+    #Game
+    @game = Game.find(params[:id])
+    @game.season_id = params[:season_id]
+    @game.home_team_id = params[:home_team_id]
+    @game.away_team_id = params[:away_team_id]
+    @game.game_type_id = params[:game_type_id]
 
     #更新処理
     respond_to do |format|
       Game.transaction do
-
-
+        #Game登録
+        if @game.update(game_params)
+          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
+        else
+          format.html { redirect_to :back, notice: '登録に失敗しました。' }
+        end
       end
-      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully updated.' }
     end
   end
 
