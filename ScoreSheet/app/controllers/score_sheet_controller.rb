@@ -10,8 +10,6 @@ class ScoreSheetController < ApplicationController
     @game = Game.selected_game(season_id,game_id)
     @season = Season.selected_season(@game.season_id)
 
-    #SeasonMembers取得
-    @season_members = SeasonMember.where(season_id:@game.season_id)
     #GameMembers取得
     @game_goalies = GameMember.game_goalies(@game.id)
     @game_players = GameMember.game_players(@game.id)
@@ -48,8 +46,8 @@ class ScoreSheetController < ApplicationController
 
     #Season情報取得
     @season = Season.selected_season(@game.season_id)
-    @season_goalies = SeasonMember.season_goalies(@season.id)
-    @season_players = SeasonMember.season_players(@season.id)
+    #@season_goalies = SeasonMember.season_goalies(@season.id)
+    #@season_players = SeasonMember.season_players(@season.id)
 
     #コンポーネント項目取得
     @seasons = Season.all.order('id DESC')
@@ -71,13 +69,15 @@ class ScoreSheetController < ApplicationController
   #
   def edit
     #登録済インスタンス取得
+    #Game情報取得
     @game = Game.find(params[:id])
-    #初期値設定
-    # @game.season_id = season_id
-    # @game.team_id = 1 #Falcons
-    # @game.game_place = 'MiSC' #MiSC
-    # @game.division_id = 4 #Bronze
-    # @game.game_type_id = 1 #Season
+    #GameMembers取得
+    @game_goalies = GameMember.game_goalies(@game.id)
+    @game_players = GameMember.game_players(@game.id)
+    #Goals取得
+    @goals = Goal.details(@game.id)
+    #Penalties取得
+    @game_panalties = GamePenalty.details(@game.id)
 
     #Season情報取得
     @season = Season.selected_season(@game.season_id)

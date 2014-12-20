@@ -12,7 +12,7 @@
   <%= form_for @game, url: {action: 'update', id: @game.id} do |f| %>
       <%= f.hidden_field :team_id %>
       <div style="text-align: right">
-        <%= link_to score_sheet_edit_path(season_id: @game.season_id, game_id: @game.id) do %>
+        <%= link_to score_sheet_edit_path(id:@game.id) do%>
       <span class="label label-primary">
             <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
       </span>
@@ -32,7 +32,7 @@
       </div>
       <!-- Game Table-->
       <h4>
-        New Game
+        Edit Game
         <%= select_tag 'season_id',
                        options_from_collection_for_select(@seasons, :id, :season_name),
                        {'ng-init'=>'selectedSeasonId=' + @game.season_id.to_s,
@@ -249,6 +249,7 @@
                     <td style="text-align: center">
                       <%= text_field_tag 'roster_jersey_no[]', '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_goalies[idx].nil? ? '' : @game_goalies[idx].member.jersey_number.to_s),
                                           'ng-model'=>'rosterJerseyNo' + idx.to_s,
                                           'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
                       <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
@@ -267,7 +268,9 @@
                     </td>
                     <!-- GA -->
                     <td style="text-align: right">
-                      <input type="text" name="goal_against[]" value="{{goalAgainsts[<%= idx.to_s%>]}}" size="2" maxlength="3" style="text-align:right;">
+                      <input type="text" name="goal_against[]"
+                             value="{{goalAgainsts[<%= idx.to_s%>]}}"
+                             size="2" maxlength="3" style="text-align:right;">
                     </td>
                     <!-- SOG -->
                     <td style="text-align: right">
@@ -301,12 +304,14 @@
               </tr>
               </thead>
               <tbody ng-controller='playerListController'>
-              <% (2..16).each do |idx| %>
+              <% (0..14).each do |idx| %>
                   <tr>
                     <!-- # -->
                     <td style="text-align: center">
-                      <%= text_field_tag 'roster_jersey_no[]', '',
+                      <%= text_field_tag 'roster_jersey_no[]',
+                                         '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_players[idx].nil? ? '' : @game_players[idx].member.jersey_number.to_s),
                                           'ng-model'=>'rosterJerseyNo' + idx.to_s,
                                           'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
                       <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
@@ -325,15 +330,21 @@
                     </td>
                     <!-- G -->
                     <td style="text-align: right">
-                      <%= text_field_tag 'goal[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal[]',
+                                         @game_players[idx].nil? ? '' : @game_players[idx].goal.to_s,
+                                         {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- A -->
                     <td style="text-align: right">
-                      <%= text_field_tag 'assist[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'assist[]',
+                                         @game_players[idx].nil? ? '' : @game_players[idx].assist.to_s,
+                                         {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- P -->
                     <td style="text-align: right">
-                      <%= text_field_tag 'penalties[]', '', {size: 2, maxlength: 3, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalties[]',
+                                         @game_players[idx].nil? ? '' : @game_players[idx].penalties.to_s,
+                                         {size: 2, maxlength: 3, style: 'text-align:right;'} %>
                     </td>
                     <!-- MVP -->
                     <td style="text-align: center">
