@@ -249,10 +249,11 @@
                     <td style="text-align: center">
                       <%= text_field_tag 'roster_jersey_no[]', '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
-                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_goalies[idx].nil? ? '' : @game_goalies[idx].member.jersey_number.to_s),
+                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_goalies[idx].nil? ? '' : @game_goalies[idx].member.jersey_number.to_s)+';' +
+                                          'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')',
                                           'ng-model'=>'rosterJerseyNo' + idx.to_s,
                                           'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
-                      <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
+                      <input type="text" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
                       <%= hidden_field_tag 'goalie_flg[]', 1 %>
                       <%= hidden_field_tag 'goal[]', 0 %>
                       <%= hidden_field_tag 'assist[]', 0 %>
@@ -311,10 +312,12 @@
                       <%= text_field_tag 'roster_jersey_no[]',
                                          '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
-                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_players[idx].nil? ? '' : @game_players[idx].member.jersey_number.to_s),
+                                          'ng-init' => 'rosterJerseyNo' + idx.to_s + '=' + (@game_players[idx].nil? ? '' : @game_players[idx].member.jersey_number.to_s)+';' +
+                                          'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')',
                                           'ng-model'=>'rosterJerseyNo' + idx.to_s,
                                           'ng-change' => 'changeRoster(rosterJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
-                      <input type="hidden" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
+
+                      <input type="text" name="member_id[]" value="{{memberIds[<%= idx.to_s%>]}}">
                       <%= hidden_field_tag 'goalie_flg[]', 0 %>
                       <%= hidden_field_tag 'goal_against[]', 0 %>
                       <%= hidden_field_tag 'shots_on_goal[]', 0 %>
@@ -382,12 +385,14 @@
               </tr>
               </thead>
               <tbody ng-controller='goalListController'>
-              <% @goals.each_with_index do |goal, idx| %>
+              <% (0..14).each do |idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
                       <%= hidden_field_tag 'goal_no[]', idx %>
-                      <%= text_field_tag 'goal_period[]', '', {size: 2, maxlength: 1, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'goal_period[]',
+                                         @goals[idx].nil? ? '' : @goals[idx].period.to_s,
+                                         {size: 2, maxlength: 1, style: 'text-align:right;'} %>
                     </td>
                     <!--Time-->
                     <td style="text-align: right">
