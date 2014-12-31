@@ -30,7 +30,10 @@
       </span>
         <% end %>
       </div>
-      <!-- Game Table-->
+
+      <!---------------->
+      <!-- Game Table -->
+      <!---------------->
       <h4>
         Edit Game
         <%= select_tag 'season_id',
@@ -223,7 +226,9 @@
       <!--// Game Table-->
 
 
-      <!-- Roster Table-->
+      <!------------------>
+      <!-- Roster Table -->
+      <!------------------>
       <h4>Roster</h4>
 
       <div>
@@ -241,7 +246,9 @@
                 <th style="text-align: center">MVP</th>
               </tr>
               </thead>
-              <!--Goalie-->
+              <!------------>
+              <!-- Goalie -->
+              <!------------>
               <tbody ng-controller='goalieListController'>
               <% (0..1).each do |idx| %>
                   <tr>
@@ -292,7 +299,9 @@
               </tbody>
               <!--//Goalie-->
 
-              <!--Player-->
+              <!------------>
+              <!-- Player -->
+              <!------------>
               <thead>
               <tr>
                 <th style="text-align: center">#</th>
@@ -365,9 +374,10 @@
       </div>
       <!--// Roster Table-->
 
-      <!-- Goals Table-->
+      <!------------------>
+      <!-- Goals Table --->
+      <!------------------>
       <h4>Goals</h4>
-
       <div>
         <div class="row">
           <div class="col-md-12">
@@ -453,9 +463,10 @@
       <!--// Goals Table-->
 
 
-      <!-- Penalty Table-->
+      <!------------------->
+      <!-- Penalty Table -->
+      <!------------------->
       <h4>Penalty summary</h4>
-
       <div>
         <div class="row">
           <div class="col-md-12">
@@ -471,17 +482,21 @@
               </tr>
               </thead>
               <tbody ng-controller='penaltyListController'>
-              <% @game_panalties.each_with_index do |penalty, idx| %>
+              <% (0..9).each do |idx| %>
                   <tr>
                     <!--Half-->
                     <td style="text-align: center">
                       <%= hidden_field_tag 'penalty_no[]', idx %>
-                      <%= text_field_tag 'penalty_period[]', '', {size: 2, maxlength: 1, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_period[]',
+                                         @game_panalties[idx].nil? ? '' : @game_panalties[idx].period.to_s,
+                                         {size: 2, maxlength: 1, style: 'text-align:right;'} %>
                     </td>
                     <!--#-->
                     <td style="text-align: center">
                       <%= text_field_tag 'penalty_jersey_no[]', '',
                                          {size: 2, maxlength: 3, style: 'text-align:right;',
+                                          'ng-init' => 'penaltyJerseyNo' + idx.to_s + '=' + (@game_panalties[idx].nil? ? '' : @game_panalties[idx].member.jersey_number.to_s)+';' +
+                                                  'changePenalty(penaltyJerseyNo'+idx.to_s+','+idx.to_s+')',
                                           'ng-model'=>'penaltyJerseyNo' + idx.to_s,
                                           'ng-change' => 'changePenalty(penaltyJerseyNo'+idx.to_s+','+idx.to_s+')'} %>
                       <input type="hidden" name="penalty_member_id[]" value="{{penaltyMemberIds[<%= idx.to_s%>]}}">
@@ -490,17 +505,28 @@
                     <td><span>{{penaltyMemberNames[<%= idx.to_s%>]}}</span></td>
                     <!--Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag 'penalty_min[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_min[]',
+                                         @game_panalties[idx].nil? ? '' : @game_panalties[idx].penalty_min.to_s,
+                                         {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                       :
-                      <%= text_field_tag 'penalty_sec[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_sec[]',
+                                         @game_panalties[idx].nil? ? '' : @game_panalties[idx].penalty_sec.to_s,
+                                         {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                     </td>
                     <!--P.Time-->
                     <td style="text-align: right">
-                      <%= text_field_tag 'penalty_time[]', '', {size: 2, maxlength: 2, style: 'text-align:right;'} %>
+                      <%= text_field_tag 'penalty_time[]',
+                                         @game_panalties[idx].nil? ? '' : @game_panalties[idx].penalty_time.to_s,
+                                         {size: 2, maxlength: 2, style: 'text-align:right;'} %>
                     </td>
                     <!--Penalty-->
                     <td>
-                      <%= select_tag 'penalty_id[]', options_from_collection_for_select(@penalties, :id, :penalty_name), include_blank:true %>
+                      <%= select_tag 'penalty_id[]',
+                                     options_from_collection_for_select(@penalties,
+                                                                        :id,
+                                                                        :penalty_name,
+                                                                        @game_panalties[idx].nil? ? '': @game_panalties[idx].penalty_id),
+                                     include_blank:true %>
                     </td>
                   </tr>
               <% end %>
