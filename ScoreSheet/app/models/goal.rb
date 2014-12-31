@@ -6,7 +6,7 @@ class Goal < ActiveRecord::Base
 
 
   def self.details(game_id)
-    where(game_id: game_id).order('period, goal_min, goal_sec')
+    where(game_id: game_id).order('period, goal_min, goal_sec').limit(15)
   end
 
 end

@@ -46,8 +46,6 @@ class ScoreSheetController < ApplicationController
 
     #Season情報取得
     @season = Season.selected_season(@game.season_id)
-    #@season_goalies = SeasonMember.season_goalies(@season.id)
-    #@season_players = SeasonMember.season_players(@season.id)
 
     #コンポーネント項目取得
     @seasons = Season.all.order('id DESC')
@@ -55,6 +53,7 @@ class ScoreSheetController < ApplicationController
     @divisions = Division.all
     @penalties = Penalty.penalties
     @season_teams = SeasonTeam.season_teams(@season.id)
+    #入力枠
     @goals = Array.new(15,Goal.new)
     @game_panalties = Array.new(10, GamePenalty.new)
 
@@ -90,8 +89,6 @@ class ScoreSheetController < ApplicationController
     @divisions = Division.all
     @penalties = Penalty.penalties
     @season_teams = SeasonTeam.season_teams(@season.id)
-    @goals = Array.new(15,Goal.new)
-    @game_panalties = Array.new(10, GamePenalty.new)
 
     #Seasonメニュー取得
     @seasons_menu = Season.seasons_menu
