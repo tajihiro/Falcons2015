@@ -188,7 +188,7 @@ class ScoreSheetController < ApplicationController
           end
           format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
         else
-          format.html { redirect_to :back, notice: '登録に失敗しました。' }
+          format.html { redirect_to :back, notice: '登録失敗しました。' }
         end
       end
     end
@@ -289,9 +289,9 @@ class ScoreSheetController < ApplicationController
               @penalty.save
             end
           end
-          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
+          format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '更新成功しました。' }
         else
-          format.html { redirect_to :back, notice: '登録に失敗しました。' }
+          format.html { redirect_to :back, notice: '更新失敗しました。' }
         end
       end
     end

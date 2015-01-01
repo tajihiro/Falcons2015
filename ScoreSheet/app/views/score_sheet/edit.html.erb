@@ -291,7 +291,14 @@
                     <!-- MVP -->
                     <td style="text-align: center">
                       <span>
-                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                        <%
+                           if @game_goalies[idx].present?
+                             mvp_flg = "mvp_flg[" + @game_goalies[idx].member_id.to_s + "]"
+                           end
+                        %>
+                        <%= check_box_tag mvp_flg,
+                                          @game_goalies[idx].nil? ? 0 : @game_goalies[idx].mvp_flg,
+                                          (@game_goalies[idx].present? && @game_goalies[idx].mvp_flg == 1) ? true : false %>
                       </span>
                     </td>
                   </tr>
@@ -361,7 +368,14 @@
                     <!-- MVP -->
                     <td style="text-align: center">
                       <span>
-                        <input type="checkbox" name="mvp_flg[{{memberIds[<%= idx.to_s%>]}}]">
+                        <%
+                           if @game_players[idx].present?
+                               mvp_flg = "mvp_flg[" + @game_players[idx].member_id.to_s + "]"
+                           end
+                        %>
+                        <%= check_box_tag mvp_flg,
+                                          @game_players[idx].nil? ? 0 : @game_players[idx].mvp_flg,
+                                          (@game_players[idx].present? && @game_players[idx].mvp_flg == 1) ? true : false %>
                       </span>
                     </td>
                   </tr>
