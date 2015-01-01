@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  get 'auth/login' => 'authentication#login'
+  post 'auth/auth_login' => 'authentication#auth_login'
+  post 'auth/auth_signin' => 'authentication#auth_signin'
+  get 'auth/logout' => 'authentication#logout'
+
   root 'score_sheet#index'
   get 'score_sheet' => 'score_sheet#index'
   get 'score_sheet/index'

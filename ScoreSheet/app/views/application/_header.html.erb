@@ -34,6 +34,22 @@
         <% end %>
         <!--// Dropdown Menu-->
       </ul>
+      <!-- Member Info -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if session[:is_login] %>
+              <%= link_to session[:member_name], nil, class:'navbar-brand' %>
+          <% else %>
+              <%= link_to 'Login', auth_login_path, class:'navbar-brand' %>
+          <% end %>
+        </li>
+        <li>
+          <% if session[:is_login] %>
+              <%= link_to 'Logout', auth_logout_path, class:'navbar-brand' %>
+          <% end %>
+        </li>
+      </ul>
+      <!--// Member Info -->
     </div>
   </div>
 </nav>

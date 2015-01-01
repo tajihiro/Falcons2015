@@ -1,4 +1,7 @@
 class Member < ActiveRecord::Base
+  #Securty Option
+  has_secure_password
+
   #Association
   belongs_to :position
   has_many :season_members
@@ -6,6 +9,10 @@ class Member < ActiveRecord::Base
   #Methods
   def member_name
     attribute('last_name') + ' ' + attribute('first_name')
+  end
+
+  def self.authenticate(email, passwd)
+    where(:email => email, :password_digest => passwd).first
   end
 
   def self.season_member(season_id, jersey_number)

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Falcons Score Sheet</title>
+  <title>Falcons Login</title>
   <!-- Stylesheet -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -18,13 +18,12 @@
 <body role="document">
 
 <!-- Header Navigation -->
-    <%= render partial: 'application/header', selected_season:@season, seasons_menu:@seasons_menu %>
 <!--// Header Navigation -->
 
 <!-- Contents -->
 <div class="container" role="main">
 
-<%= yield %>
+  <%= yield %>
 
 </div>
 <!--// Contents -->
