@@ -207,11 +207,88 @@ class ScoreSheetController < ApplicationController
     @game.away_team_id = params[:away_team_id]
     @game.game_type_id = params[:game_type_id]
 
+    #GameMembers
+    member_ids = params[:member_id]
+    goals = params[:goal]
+    assists = params[:assist]
+    penalties = params[:penalties]
+    goal_againsts = params[:goal_against]
+    shots_againsts = params[:shots_against]
+    shots_on_goals = params[:shots_on_goal]
+    goalie_flgs = params[:goalie_flg]
+    mvp_flgs = params[:mvp_flg]
+    #Goals
+    goal_nos = params[:goal_no]
+    goal_periods = params[:goal_period]
+    goal_mins = params[:goal_min]
+    goal_secs = params[:goal_sec]
+    goal_member_ids = params[:goal_member_id]
+    assist1_member_ids = params[:assist1_member_id]
+    assist2_member_ids = params[:assist2_member_id]
+    #Penalties
+    penalty_nos = params[:penalty_no]
+    penalty_ids = params[:penalty_id]
+    penalty_periods = params[:penalty_period]
+    penalty_mins = params[:penalty_min]
+    penalty_secs = params[:penalty_sec]
+    penalty_times = params[:penalty_time]
+    penalty_member_ids = params[:penalty_member_id]
+
     #更新処理
     respond_to do |format|
       Game.transaction do
         #Game登録
         if @game.update(game_params)
+          #GameMember登録
+          GameMember.delete_all(['game_id = ?', @game.id])
+          member_ids.each_with_index do |member_id, i|
+            if member_id.present?
+              @game_member = GameMember.new
+              @game_member.game_id = @game.id
+              @game_member.member_id = member_ids[i]
+              @game_member.goal = goals[i]
+              @game_member.assist = assists[i]
+              @game_member.goal_against = goal_againsts[i]
+              @game_member.shots_against = shots_againsts[i]
+              @game_member.shots_on_goal = shots_on_goals[i]
+              @game_member.penalties = penalties[i]
+              @game_member.goalie_flg = goalie_flgs[i]
+              unless mvp_flgs.nil?
+                @game_member.mvp_flg = (mvp_flgs.key?(member_ids[i]) ? 1 : 0)
+              end
+              @game_member.save
+            end
+          end
+          #Goals登録
+          Goal.delete_all(['game_id = ?', @game.id])
+          goal_nos.each_with_index do |goal_no, i|
+            if goal_periods[i].to_i > 0
+              @goal = Goal.new
+              @goal.game_id = @game.id
+              @goal.period = goal_periods[i]
+              @goal.goal_min = goal_mins[i]
+              @goal.goal_sec = goal_secs[i]
+              @goal.goal_member_id = goal_member_ids[i]
+              @goal.assist1_member_id = assist1_member_ids[i]
+              @goal.assist2_member_id = assist2_member_ids[i]
+              @goal.save
+            end
+          end
+          #Penalties登録
+          GamePenalty.delete_all(['game_id = ?', @game.id])
+          penalty_nos.each_with_index do |penalty_no, i|
+            if penalty_periods[i].to_i > 0
+              @penalty = GamePenalty.new
+              @penalty.game_id = @game.id
+              @penalty.period = penalty_periods[i]
+              @penalty.penalty_min = penalty_mins[i]
+              @penalty.penalty_sec = penalty_secs[i]
+              @penalty.penalty_time = penalty_times[i]
+              @penalty.penalty_member_id = penalty_member_ids[i]
+              @penalty.penalty_id = penalty_ids[i]
+              @penalty.save
+            end
+          end
           format.html { redirect_to score_sheet_index_path(game_id:@game.id), notice: '登録成功しました。' }
         else
           format.html { redirect_to :back, notice: '登録に失敗しました。' }
