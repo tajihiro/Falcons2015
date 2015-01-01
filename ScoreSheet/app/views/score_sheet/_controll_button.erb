@@ -31,7 +31,7 @@
               </span>
           <% end %>
           &nbsp;
-          <%= link_to score_sheet_index_path(season_id: @game.season_id, game_id: @game.id) do %>
+          <%= link_to action:'destroy', id:@game.id do %>
               <span class="label label-danger">
                     <span class="glyphicon glyphicon-minus-sign" aria-hidden="true">Delete</span>
               </span>

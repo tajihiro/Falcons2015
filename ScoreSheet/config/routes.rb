@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'score_sheet/edit'
   post 'score_sheet/create'
   patch 'score_sheet/:id/update' => 'score_sheet#update'
+  get 'score_sheet/:id/delete' => 'score_sheet#destroy'
 
   resources :seasons
   resources :games

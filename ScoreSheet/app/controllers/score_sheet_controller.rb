@@ -305,9 +305,17 @@ class ScoreSheetController < SessionController
     #削除処理
     respond_to do |format|
       Game.transaction do
-
+        @game = Game.find(params[:id])
+        #Game削除
+        Game.delete_all(['id = ?', @game.id])
+        #GameMember削除
+        GameMember.delete_all(['game_id = ?', @game.id])
+        #Goals削除
+        Goal.delete_all(['game_id = ?', @game.id])
+        #Penalties削除
+        GamePenalty.delete_all(['game_id = ?', @game.id])
       end
-      format.html { redirect_to score_sheet_index_path, notice: 'Game was successfully deleted.' }
+      format.html { redirect_to score_sheet_index_path, notice: '削除しました。' }
     end
 
   end
