@@ -7,21 +7,13 @@
 <h2 id="notice" style="color: green;"><%= notice %></h2>
 <!--// Result Message -->
 
-<!-- Game Table-->
-<div style="text-align: right">
-  <%= link_to score_sheet_edit_path(id:@game.id) do%>
-      <span class="label label-primary">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
-      </span>
-  <% end %>
-  &nbsp;
-  <%= link_to score_sheet_new_path(season_id:@game.season_id) do%>
-      <span class="label label-success">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
-      </span>
-  <% end %>
-</div>
+<!-- Controll Buttons-->
+<%= render partial: 'controll_button', locals:{mode: 'show'}%>
+<!--// Controll Buttons-->
 
+<!---------------->
+<!-- Game Table -->
+<!---------------->
 <h4><%= @game.season.season_name %> Game <%= @game.game_name %></h4>
 
 <div>
@@ -153,8 +145,9 @@
 </div>
 <!--// Game Table-->
 
-
-<!-- Roster Table-->
+<!------------------>
+<!-- Roster Table -->
+<!------------------>
 <h4>Roster</h4>
 <div>
     <div class="row">
@@ -273,7 +266,9 @@
 </div>
 <!--// Roster Table-->
 
-<!-- Goals Table-->
+<!------------------>
+<!-- Goals Table --->
+<!------------------>
 <h4>Goals</h4>
 <div>
     <div class="row">
@@ -345,7 +340,9 @@
 <!--// Goals Table-->
 
 
-<!-- Penalty Table-->
+<!------------------->
+<!-- Penalty Table -->
+<!------------------->
 <h4>Penalty summary</h4>
 <div>
     <div class="row">
