@@ -38,14 +38,21 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <% if session[:is_login] %>
-              <%= link_to session[:member_name], nil, class:'navbar-brand' %>
+              <%= link_to nil, class:'navbar-brand' do %>
+                <span class="glyphicon glyphicon-user"></span>
+                <%= session[:member_name]%>
+              <% end %>
           <% else %>
               <%= link_to 'Login', auth_login_path, class:'navbar-brand' %>
           <% end %>
         </li>
         <li>
           <% if session[:is_login] %>
-              <%= link_to 'Logout', auth_logout_path, class:'navbar-brand' %>
+              <%= link_to auth_logout_path do %>
+              <span class="label label-primary">
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span>
+              </span>
+              <% end %>
           <% end %>
         </li>
       </ul>

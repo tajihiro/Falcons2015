@@ -1,4 +1,5 @@
-class ScoreSheetController < ApplicationController
+class ScoreSheetController < SessionController
+  skip_before_filter :check_login, only: 'index'
 
   #
   # index

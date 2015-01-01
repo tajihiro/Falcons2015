@@ -14,27 +14,27 @@
           <% end %>
       <% elsif mode == 'new' %>
           <%= link_to score_sheet_new_path(season_id: @game.season_id) do %>
-          <span class="label label-success">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
-          </span>
+              <span class="label label-success">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
+              </span>
           <% end %>
       <% elsif mode == 'edit' %>
           <%= link_to score_sheet_edit_path(id: @game.id) do %>
-      <span class="label label-primary">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
-      </span>
+              <span class="label label-primary">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit</span>
+              </span>
           <% end %>
           &nbsp;
           <%= link_to score_sheet_new_path(season_id: @game.season_id) do %>
-      <span class="label label-success">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
-      </span>
+              <span class="label label-success">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">Add</span>
+              </span>
           <% end %>
           &nbsp;
           <%= link_to score_sheet_index_path(season_id: @game.season_id, game_id: @game.id) do %>
-      <span class="label label-danger">
-            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true">Delete</span>
-      </span>
+              <span class="label label-danger">
+                    <span class="glyphicon glyphicon-minus-sign" aria-hidden="true">Delete</span>
+              </span>
           <% end %>
       <% end %>
     </div>
