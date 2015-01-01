@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118170000) do
+ActiveRecord::Schema.define(version: 20150101050148) do
+
+  create_table "admins", force: true do |t|
+    t.string   "admin_name", limit: 20, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "divisions", force: true do |t|
     t.string   "division_name",    limit: 30, null: false
@@ -22,7 +28,7 @@ ActiveRecord::Schema.define(version: 20141118170000) do
 
   create_table "game_members", id: false, force: true do |t|
     t.integer  "game_id",                                null: false
-    t.integer  "members_id",                             null: false
+    t.integer  "member_id",                              null: false
     t.integer  "goal",                     default: 0,   null: false
     t.integer  "assist",                   default: 0,   null: false
     t.integer  "goal_against",             default: 0,   null: false
@@ -100,16 +106,19 @@ ActiveRecord::Schema.define(version: 20141118170000) do
   end
 
   create_table "members", force: true do |t|
-    t.string   "last_name",     limit: 20,             null: false
-    t.string   "first_name",    limit: 20,             null: false
-    t.string   "last_en_name",  limit: 20
-    t.string   "first_en_name", limit: 20
-    t.string   "nick_name",     limit: 20
+    t.string   "email",           limit: 120,             null: false
+    t.string   "password_digest",                         null: false
+    t.integer  "admin_id"
+    t.string   "last_name",       limit: 20,              null: false
+    t.string   "first_name",      limit: 20,              null: false
+    t.string   "last_en_name",    limit: 20
+    t.string   "first_en_name",   limit: 20
+    t.string   "nick_name",       limit: 20
     t.integer  "jersey_number"
     t.integer  "position_id"
-    t.integer  "gender",        limit: 1,  default: 1, null: false
-    t.string   "address",       limit: 30
-    t.string   "birth_place",   limit: 30
+    t.integer  "gender",          limit: 1,   default: 1, null: false
+    t.string   "address",         limit: 30
+    t.string   "birth_place",     limit: 30
     t.date     "birthday"
     t.text     "image_url"
     t.datetime "created_at"

@@ -1,6 +1,9 @@
 class CreateMembers < ActiveRecord::Migration
   def change
     create_table :members do |t|
+      t.string :email, :limit => 120, :null => false
+      t.string :password_digest, :null => false
+      t.references :admin
       t.string :last_name, :limit => 20, :null => false
       t.string :first_name, :limit => 20, :null => false
       t.string :last_en_name, :limit => 20

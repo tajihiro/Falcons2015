@@ -2,6 +2,8 @@
 
 ksk:
   id: 1
+  email: @falcons.com
+  password_digest: xxx
   last_name: 轟
   first_name: 啓介
   last_en_name: Todoroki
@@ -17,6 +19,8 @@ ksk:
 
 taji:
   id: 2
+  email: @falcons.com
+  password_digest: xxx
   last_name: 田島
   first_name: 啓之
   last_en_name: Tajima
@@ -32,6 +36,8 @@ taji:
 
 shuhei:
   id: 3
+  email: @falcons.com
+  password_digest: xxx
   last_name: 小川
   first_name: 修平
   last_en_name: Ogawa
@@ -47,6 +53,8 @@ shuhei:
 
 tarora:
   id: 4
+  email: @falcons.com
+  password_digest: xxx
   last_name: 太郎良
   first_name: 顕
   last_en_name: Tarora
@@ -62,6 +70,8 @@ tarora:
 
 masaya:
   id: 5
+  email: @falcons.com
+  password_digest: xxx
   last_name: 落合
   first_name: 雅也
   last_en_name: Ochiai
@@ -77,6 +87,8 @@ masaya:
 
 takama:
   id: 6
+  email: @falcons.com
+  password_digest: xxx
   last_name: 高天
   first_name: 直樹
   last_en_name: Takama
@@ -92,6 +104,8 @@ takama:
 
 keiji:
   id: 7
+  email: @falcons.com
+  password_digest: xxx
   last_name: 来留島
   first_name: 圭司
   last_en_name: Kurushima
@@ -107,6 +121,8 @@ keiji:
 
 katsu:
   id: 8
+  email: @falcons.com
+  password_digest: xxx
   last_name: 伊原
   first_name: 克将
   last_en_name: Ihara
@@ -122,6 +138,8 @@ katsu:
 
 shingo:
   id: 9
+  email: @falcons.com
+  password_digest: xxx
   last_name: 片平
   first_name: 晋吾
   last_en_name: Katahira
@@ -137,6 +155,8 @@ shingo:
 
 tsutomu:
   id: 10
+  email: @falcons.com
+  password_digest: xxx
   last_name: 若林
   first_name: 努
   last_en_name: Wakabayashi
@@ -152,6 +172,8 @@ tsutomu:
 
 koichi:
   id: 11
+  email: @falcons.com
+  password_digest: xxx
   last_name: 若林
   first_name: 孝一
   last_en_name: Wakabayashi
@@ -167,6 +189,8 @@ koichi:
 
 yoriko:
   id: 12
+  email: @falcons.com
+  password_digest: xxx
   last_name: 一ノ宮
   first_name: 頼子
   last_en_name: Ichinomiya
@@ -182,6 +206,8 @@ yoriko:
   
 kazutora:
   id: 13
+  email: @falcons.com
+  password_digest: xxx
   last_name: 鈴木
   first_name: 一虎
   last_en_name: Suzuki
@@ -197,6 +223,8 @@ kazutora:
   
 matsui:
   id: 14
+  email: @falcons.com
+  password_digest: xxx
   last_name: 松井
   first_name: 崇
   last_en_name: Matsui
@@ -212,6 +240,8 @@ matsui:
 
 billy:
   id: 15
+  email: @falcons.com
+  password_digest: xxx
   last_name: 児玉
   first_name: 隆
   last_en_name: Kodama
@@ -227,6 +257,8 @@ billy:
   
 kikuchi:
   id: 16
+  email: @falcons.com
+  password_digest: xxx
   last_name: 菊地
   first_name: 竜次
   last_en_name: Kikuchi
@@ -242,6 +274,8 @@ kikuchi:
   
 wakamatsu:
   id: 17
+  email: @falcons.com
+  password_digest: xxx
   last_name: 若松
   first_name: 大輔
   last_en_name: Wakamutsu
@@ -257,6 +291,8 @@ wakamatsu:
   
 hasebe:
   id: 18
+  email: @falcons.com
+  password_digest: xxx
   last_name: 長谷部
   first_name: 道生
   last_en_name: Hasebe
@@ -272,6 +308,8 @@ hasebe:
 
 junko:
   id: 19
+  email: @falcons.com
+  password_digest: xxx
   last_name: 平野
   first_name: 順子
   last_en_name: Hirano
@@ -287,6 +325,8 @@ junko:
 
 junko:
   id: 20
+  email: @falcons.com
+  password_digest: xxx
   last_name: 平山
   first_name: 恵
   last_en_name: Hirayama
@@ -302,6 +342,8 @@ junko:
 
 keita:
   id: 21
+  email: @falcons.com
+  password_digest: xxx
   last_name: 田辺
   first_name: 啓太
   last_en_name: Tanabe
@@ -317,6 +359,8 @@ keita:
 
 nobu:
   id: 22
+  email: @falcons.com
+  password_digest: xxx
   last_name: 飯塚
   first_name: のぶ
   last_en_name: Iizuka
