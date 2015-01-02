@@ -15,7 +15,8 @@ role :db,  %w{app@whoocus.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'whoocus.com', user: 'app', roles: %w{web app}, my_property: :my_value
+server '49.212.148.32', user: 'app', password: fetch(:password), roles: %w{web app}
+#server 'whoocus.com', user: 'app', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options
@@ -25,6 +26,12 @@ server 'whoocus.com', user: 'app', roles: %w{web app}, my_property: :my_value
 #
 # Global options
 # --------------
+set :ssh_options, {
+   keys: %w(/Users/tajihiro/.ssh/id_rsa),
+   forward_agent: true,
+   auth_methods: %w(password),
+   password: 'Gundam1215'
+}
 #  set :ssh_options, {
 #    keys: %w(/home/rlisowski/.ssh/id_rsa),
 #    forward_agent: false,
