@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:tajihiro/Falcons.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/app/falcons'
+set :deploy_to, "/app/#{fetch(:application)}"
 
 # Default value for :scm is :git
 set :scm, :git
@@ -23,8 +23,7 @@ set :scm, :git
 # set :pty, true
 
 # Default value for :linked_files is []
-#set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-#set :linked_files, %w{config/database.yml}
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
